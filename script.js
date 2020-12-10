@@ -8,7 +8,7 @@ import {
 
 console.log(d);
 
-// ==========  Global Elements ========== //
+// ==========  GLOBAL ELEMENTS ========== //
 
 // Query Alias
 const query = document.querySelector.bind(document);
@@ -21,7 +21,7 @@ const nextArrow = query('.arrow_next-month');
 const monthHeading = query('.calendar_month');
 
 // Renders the calendar
-function renderCalendar() {
+function renderCalendar(direction = null) {
 	// Month heading
 	monthHeading.innerText = `${months[d.getMonth()]} ${d.getFullYear()}`;
 
@@ -72,16 +72,26 @@ function renderCalendar() {
 			dateCollection[x].classList.add('date--blur');
 		}
 	}
+
+	// Direction calendar scrolls on month change ('left' or 'right')
+	if (direction !== null) {
+		const slideDirection = `slide-${direction}`;
+		rowCollection.forEach(row => {
+			row.classList.add(slideDirection);
+		});
+	}
 }
 
 renderCalendar();
 
+// ==========  EVENT LISTENERS ========== //
+
 prevArrow.addEventListener('click', e => {
 	d.setMonth(d.getMonth() - 1);
-	renderCalendar();
+	renderCalendar('l');
 });
 
 nextArrow.addEventListener('click', e => {
 	d.setMonth(d.getMonth() + 1);
-	renderCalendar();
+	renderCalendar('r');
 });

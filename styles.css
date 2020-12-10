@@ -1,4 +1,4 @@
-/* ========= Config ========== */
+/* ========= CONFIG ========== */
 
 :root {
 	--primary-100: hsl(214, 82%, 97%);
@@ -34,6 +34,7 @@ body {
 	justify-content: center;
 	background: var(--light-100);
 	color: var(--dark-900);
+	overflow: hidden; /* Hide scrollbars */
 }
 
 .container {
@@ -41,7 +42,7 @@ body {
 	height: 100vh;
 }
 
-/* ========= Calendar ========== */
+/* ========= CALENDAR ========== */
 
 #calendar {
 	display: flex;
@@ -129,7 +130,7 @@ body {
 	background: var(--primary-400);
 }
 
-/* ========= Arrows ========== */
+/* ========= ARROWS ========== */
 
 /* Container for arrows */
 .calendar_arrows {
@@ -176,4 +177,44 @@ body {
 	transform: rotate(45deg);
 	-webkit-box-shadow: 10px 15px 0px 0px var(--dark-900);
 	box-shadow: 3px -3px 0px 0px var(--dark-900);
+}
+
+/* ========== SLIDE ANIMATIONS ========== */
+
+/* slide-right */
+
+.slide-r {
+	position: relative;
+	animation-name: slide-r;
+	animation-duration: 500ms;
+}
+
+@keyframes slide-r {
+	0% {
+		opacity: 0.4;
+		right: 30%;
+	}
+	100% {
+		right: 0;
+		opacity: 1;
+	}
+}
+
+/* slide-left */
+
+.slide-l {
+	position: relative;
+	animation-name: slide-l;
+	animation-duration: 400ms;
+}
+
+@keyframes slide-l {
+	0% {
+		opacity: 0;
+		left: 30%;
+	}
+	100% {
+		left: 0;
+		opacity: 1;
+	}
 }
