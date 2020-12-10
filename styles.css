@@ -5,9 +5,12 @@
 	--primary-500: hsl(214, 82%, 51%);
 	--primary-600: hsl(214, 82%, 39%);
 	--dark-900: hsl(206, 6%, 25%);
-	--light-100: hsl(200, 12%, 100%);
-	--light-500: hsl(200, 12%, 95%);
+	--dark-500: hsl(206, 6%, 35%);
+	--dark-100: hsl(206, 6%, 45%);
+	--light-900: hsl(200, 12%, 75%);
 	--light-600: hsl(200, 12%, 90%);
+	--light-500: hsl(200, 12%, 95%);
+	--light-100: hsl(200, 12%, 100%);
 }
 
 html {
@@ -77,11 +80,14 @@ body {
 
 .date_num {
 	cursor: pointer;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: left;
 	width: max-content;
 	font-size: 12px;
 	text-align: center;
 	margin-top: 6px;
-	padding-top: 8px;
 	width: 30px;
 	height: 30px;
 	border-radius: 50%;
@@ -89,16 +95,15 @@ body {
 }
 
 .date--blur {
-	background: var(--light-500);
+	background: var(--light-100);
 }
 
 .date_num:hover {
-	color: var(--light-100);
-	background: var(--primary-500);
+	background: var(--primary-100);
 }
 
 .date_num--blur {
-	color: #888;
+	color: var(--light-900);
 }
 
 .row {
@@ -108,4 +113,63 @@ body {
 
 .row:not(:last-child) {
 	border-bottom: 1px solid var(--light-600);
+}
+
+.today {
+	color: var(--light-100);
+	background: var(--primary-500);
+}
+
+.today:hover {
+	color: var(--light-100);
+	background: var(--primary-400);
+}
+
+/* ========= Arrows ========== */
+
+/* Container for arrows */
+.calendar_arrows {
+	position: absolute;
+	left: 50px;
+	display: flex;
+	justify-content: space-around;
+	width: 60px;
+}
+
+.calendar_arrow-focus {
+	position: relative;
+	display: flex;
+	width: 24px;
+	height: 24px;
+	border-radius: 50%;
+	cursor: pointer;
+}
+
+.calendar_arrow-focus:hover {
+	background: var(--light-500);
+}
+
+.calendar_arrow-prev,
+.calendar_arrow-next {
+	position: relative;
+	top: 6.5px;
+	cursor: pointer;
+	width: 10px;
+	height: 10px;
+	background: none;
+}
+
+/* container for arrows */
+.calendar_arrow-prev {
+	left: 12px;
+	transform: rotate(45deg);
+	-webkit-box-shadow: 10px 15px 0px 0px var(--dark-900);
+	box-shadow: -3px 3px 0px 0px var(--dark-900);
+}
+
+.calendar_arrow-next {
+	left: 1px;
+	transform: rotate(45deg);
+	-webkit-box-shadow: 10px 15px 0px 0px var(--dark-900);
+	box-shadow: 3px -3px 0px 0px var(--dark-900);
 }

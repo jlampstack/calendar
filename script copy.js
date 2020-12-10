@@ -26,7 +26,7 @@ const queryAll = document.querySelectorAll.bind(document);
 // Elements
 const datesContainer = query('.calendar_dates');
 const monthHeading = query('.calendar_month');
-monthHeading.innerText = `${currMonth} ${currYear}`;
+monthHeading.innerText = currMonth;
 
 // Returns 5 or 6 rows depending on month
 const numRows = currMonthOffsetStart + currMonthLastDay > 35 ? 6 : 5;
@@ -70,11 +70,5 @@ for (let x = 0; x < numRows * 7; x++) {
 			x
 		].innerHTML = `<div class="date_num date_num--blur">${date.getDate()}</div>`;
 		dateCollection[x].classList.add('date--blur');
-	}
-
-	// Add focus to current date if date is "Today", toDateString removes timestamp
-	if (date.toDateString() === d.toDateString()) {
-		// The date number is the first child node
-		dateCollection[x].childNodes[0].classList.add('today');
 	}
 }
