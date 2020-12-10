@@ -12,9 +12,7 @@ const prevArrow = query('.arrow_prev-month');
 const nextArrow = query('.arrow_next-month');
 const monthHeading = query('.calendar_month');
 
-// ==========  FUNCTION SCOPE ========== //
-
-// Renders calendar
+// Renders the calendar
 function renderCalendar(direction = null) {
 	// Month heading
 	monthHeading.innerText = `${months[d.getMonth()]} ${d.getFullYear()}`;
@@ -66,7 +64,7 @@ function renderCalendar(direction = null) {
 		}
 	}
 
-	// ANIMATE: calendar scroll direction ('left' or 'right')
+	// Direction calendar scrolls on month change ('left' or 'right')
 	if (direction !== null) {
 		const slideDirection = `slide-${direction}`;
 		rowCollection.forEach(row => {
@@ -76,15 +74,6 @@ function renderCalendar(direction = null) {
 }
 
 renderCalendar();
-
-// TODAY: Add class "today" if the date is today, USE GLOBAL SCOPE
-queryAll('.date_num').forEach((date, index) => {
-	let today = new Date(d.getFullYear(), d.getMonth(), d.getDate());
-	// Index is always 1 ahead, subtract 1
-	if (index - 1 === d.getDate()) {
-		date.classList.add('today');
-	}
-});
 
 // ==========  EVENT LISTENERS ========== //
 
@@ -114,3 +103,7 @@ calendar.addEventListener(
 	},
 	{ passive: true },
 );
+
+// x === new Date().getDate() &&
+// d.getMonth() === new Date().getMonth() &&
+// d.getFullYear() === new Date().getFullYear()

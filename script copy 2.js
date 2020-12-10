@@ -12,9 +12,7 @@ const prevArrow = query('.arrow_prev-month');
 const nextArrow = query('.arrow_next-month');
 const monthHeading = query('.calendar_month');
 
-// ==========  FUNCTION SCOPE ========== //
-
-// Renders calendar
+// Renders the calendar
 function renderCalendar(direction = null) {
 	// Month heading
 	monthHeading.innerText = `${months[d.getMonth()]} ${d.getFullYear()}`;
@@ -77,11 +75,20 @@ function renderCalendar(direction = null) {
 
 renderCalendar();
 
-// TODAY: Add class "today" if the date is today, USE GLOBAL SCOPE
-queryAll('.date_num').forEach((date, index) => {
-	let today = new Date(d.getFullYear(), d.getMonth(), d.getDate());
-	// Index is always 1 ahead, subtract 1
-	if (index - 1 === d.getDate()) {
+// TODAY: Add class "today" if the date is today
+// NOTE: Must be in global scope to prevent each month from having this class
+queryAll('.date_num').forEach(date => {
+	let dataDate = Date.parse(date.getAttribute('data-date'));
+	let parsedDate = new Date(dataDate).toDateString();
+	let today = new Date(
+		d.getFullYear(),
+		d.getMonth(),
+		d.getDate(),
+	).toDateString();
+	if (parsedDate === today) {
+		console.log(date);
+		console.log(parsedDate);
+		console.log(today);
 		date.classList.add('today');
 	}
 });
@@ -114,3 +121,7 @@ calendar.addEventListener(
 	},
 	{ passive: true },
 );
+
+// x === new Date().getDate() &&
+// d.getMonth() === new Date().getMonth() &&
+// d.getFullYear() === new Date().getFullYear()
