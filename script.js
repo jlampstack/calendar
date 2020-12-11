@@ -1,4 +1,10 @@
-import { d, months, getOffsetStart, getLastDateOfMonth } from './date.js';
+import {
+	d,
+	months,
+	daysShort,
+	getOffsetStart,
+	getLastDateOfMonth,
+} from './date.js';
 import { modalTask } from './modal.js';
 
 // ==========  GLOBAL ELEMENTS ========== //
@@ -78,6 +84,17 @@ function renderCalendar(direction = null) {
 			dateCollection[i].classList.add('date--blur');
 		}
 	}
+
+	// ADD day of week as column headers (Sun - Sat)
+	dateCollection.forEach((date, index) => {
+		const dow = document.createElement('SPAN');
+		dow.classList.add('date_dow');
+		dow.innerHTML = `${daysShort[index].toUpperCase()}`;
+		if (index < 7) {
+			console.log(date);
+			date.prepend(dow);
+		}
+	});
 
 	// ANIMATE: calendar scroll direction ('left' or 'right')
 	if (direction !== null) {

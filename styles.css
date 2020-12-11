@@ -7,8 +7,8 @@
 	--primary-500: hsl(214, 82%, 51%);
 	--primary-600: hsl(214, 82%, 39%);
 	--dark-900: hsl(206, 6%, 25%);
-	--dark-500: hsl(206, 6%, 35%);
-	--dark-100: hsl(206, 6%, 45%);
+	--dark-500: hsl(206, 6%, 33%);
+	--dark-100: hsl(206, 6%, 50%);
 	--light-900: hsl(200, 12%, 75%);
 	--light-600: hsl(200, 12%, 90%);
 	--light-500: hsl(200, 12%, 95%);
@@ -68,6 +68,8 @@ body {
 	font-weight: 700;
 }
 
+/* Container for all dates */
+
 .calendar_dates {
 	display: flex;
 	flex-wrap: wrap;
@@ -77,12 +79,24 @@ body {
 
 .date {
 	display: flex;
-	justify-content: center;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
 	width: calc(100% / 7);
 }
 
 .date:not(:last-child) {
 	border-right: 1px solid var(--light-600);
+}
+
+/* Day of Week */
+
+.date_dow {
+	margin-top: 16px;
+	margin-bottom: -8px;
+	font-size: 12px;
+	color: var(--light-900);
+	width: max-content;
 }
 
 .date_num {
