@@ -89,7 +89,7 @@ function renderCalendar(direction = null) {
 	dateCollection.forEach((date, index) => {
 		const dow = document.createElement('SPAN');
 		dow.classList.add('date_dow');
-		dow.innerHTML = `${daysShort[index].toUpperCase()}`;
+		dow.innerHTML = `${daysShort[index]}`;
 		if (index < 7) {
 			console.log(date);
 			date.prepend(dow);

@@ -56,7 +56,7 @@ export const days = [
 	'Saturday',
 ];
 
-export const daysShort = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+export const daysShort = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
 
 export const daysLetter = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
 
