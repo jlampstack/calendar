@@ -1,4 +1,10 @@
-import { d, months, getOffsetStart, getLastDateOfMonth } from './date.js';
+import {
+	d,
+	months,
+	daysShort,
+	getOffsetStart,
+	getLastDateOfMonth,
+} from './date.js';
 import { modalTask } from './modal.js';
 
 // ==========  GLOBAL ELEMENTS ========== //
@@ -61,12 +67,12 @@ function renderCalendar(direction = null) {
 			].innerHTML = `<div class="date_num" data-date="${date}">${date.getDate()}</div>`;
 			// TODAY: date only for today
 			let today = new Date();
+			// Adjust index -1 to get correct date
 			if (
-				today.getDate() == i &&
+				today.getDate() == i - 1 &&
 				today.getMonth() == date.getMonth() &&
 				today.getFullYear() == date.getFullYear()
 			) {
-				console.log(i, 'datey', today);
 				const dateNumCollection = queryAll('.date_num');
 				dateNumCollection[i].classList.add('today');
 			}
@@ -78,6 +84,17 @@ function renderCalendar(direction = null) {
 			dateCollection[i].classList.add('date--blur');
 		}
 	}
+
+	// ADD day of week as column headers (Sun - Sat)
+	dateCollection.forEach((date, index) => {
+		const dow = document.createElement('SPAN');
+		dow.classList.add('date_dow');
+		dow.innerHTML = `${daysShort[index].toUpperCase()}`;
+		if (index < 7) {
+			console.log(date);
+			date.prepend(dow);
+		}
+	});
 
 	// ANIMATE: calendar scroll direction ('left' or 'right')
 	if (direction !== null) {
