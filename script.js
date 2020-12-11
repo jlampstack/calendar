@@ -61,12 +61,12 @@ function renderCalendar(direction = null) {
 			].innerHTML = `<div class="date_num" data-date="${date}">${date.getDate()}</div>`;
 			// TODAY: date only for today
 			let today = new Date();
+			// Adjust index -1 to get correct date
 			if (
-				today.getDate() == i &&
+				today.getDate() == i - 1 &&
 				today.getMonth() == date.getMonth() &&
 				today.getFullYear() == date.getFullYear()
 			) {
-				console.log(i, 'datey', today);
 				const dateNumCollection = queryAll('.date_num');
 				dateNumCollection[i].classList.add('today');
 			}
