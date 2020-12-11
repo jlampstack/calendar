@@ -1,4 +1,5 @@
 import { d, months, getOffsetStart, getLastDateOfMonth } from './date.js';
+import { modalTask } from './modal.js';
 
 // ==========  GLOBAL ELEMENTS ========== //
 
@@ -47,16 +48,28 @@ function renderCalendar(direction = null) {
 	// ADD dates
 	for (let i = 0; i < numRows * 7; i++) {
 		// Starts at the first index
-		let date = new Date(
+		const date = new Date(
 			d.getFullYear(),
 			d.getMonth(),
 			1 - getOffsetStart() + i,
 		);
 		// CURRENT MONTH: add the base date class for basic styling
 		if (date.getMonth() === d.getMonth()) {
+			// All dates
 			dateCollection[
 				i
 			].innerHTML = `<div class="date_num" data-date="${date}">${date.getDate()}</div>`;
+			// TODAY: date only for today
+			let today = new Date();
+			if (
+				today.getDate() == i &&
+				today.getMonth() == date.getMonth() &&
+				today.getFullYear() == date.getFullYear()
+			) {
+				console.log(i, 'datey', today);
+				const dateNumCollection = queryAll('.date_num');
+				dateNumCollection[i].classList.add('today');
+			}
 		} else {
 			// PREV & NEXT MONTH: add class for special styling to dates not of current month
 			dateCollection[
@@ -76,15 +89,6 @@ function renderCalendar(direction = null) {
 }
 
 renderCalendar();
-
-// TODAY: Add class "today" if the date is today, USE GLOBAL SCOPE
-queryAll('.date_num').forEach((date, index) => {
-	let today = new Date(d.getFullYear(), d.getMonth(), d.getDate());
-	// Index is always 1 ahead, subtract 1
-	if (index - 1 === d.getDate()) {
-		date.classList.add('today');
-	}
-});
 
 // ==========  EVENT LISTENERS ========== //
 
@@ -114,3 +118,8 @@ calendar.addEventListener(
 	},
 	{ passive: true },
 );
+
+// ==========  MODAL TASK ========== //
+
+// Task Modal Pop Up
+modalTask();
