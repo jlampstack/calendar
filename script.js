@@ -5,7 +5,8 @@ import {
 	getOffsetStart,
 	getLastDateOfMonth,
 } from './date.js';
-import { modalTask } from './modal.js';
+
+import { modalPopup } from './modal.js';
 
 // ==========  GLOBAL ELEMENTS ========== //
 
@@ -14,6 +15,7 @@ const query = document.querySelector.bind(document);
 const queryAll = document.querySelectorAll.bind(document);
 
 // Elements
+const calendar = query('#calendar');
 const datesContainer = query('.calendar_dates');
 const prevArrow = query('.arrow_prev-month');
 const nextArrow = query('.arrow_next-month');
@@ -102,6 +104,11 @@ function renderCalendar(direction = null) {
 			row.classList.add(slideDirection);
 		});
 	}
+
+	// ==========  MODAL TASK ========== //
+
+	// Task Modal Pop Up
+	modalPopup();
 }
 
 renderCalendar();
@@ -187,8 +194,3 @@ function handleTouchMove(evt) {
 	xDown = null;
 	yDown = null;
 }
-
-// ==========  MODAL TASK ========== //
-
-// Task Modal Pop Up
-modalTask();
