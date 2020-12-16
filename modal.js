@@ -90,6 +90,21 @@ export function modalPopup() {
 		};
 	});
 
+	const inputTask = query('.add-task');
+	const inputFocusDiv = query('.input--focus');
+
+	inputTask.onfocus = e => {
+		inputFocusDiv.style.visibility = 'visible';
+		inputFocusDiv.style.width = '80%';
+	};
+
+	inputTask.onblur = e => {
+		inputFocusDiv.style.visibility = 'hidden';
+		setTimeout(() => {
+			inputFocusDiv.style.width = '0%';
+		}, 200);
+	};
+
 	// When the user clicks on <span> (x), close the modal
 	closeModal.onclick = function () {
 		modal.style.display = 'none';
