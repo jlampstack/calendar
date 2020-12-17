@@ -7,3 +7,4 @@ View calendar by month, day, week, year
 1. Animated scroll
 2. Touch scroll
 3. Mouse wheel scroll
+4. Arrow scroll
