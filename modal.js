@@ -7,6 +7,7 @@ const queryAll = document.querySelectorAll.bind(document);
 export function modalPopup() {
 	// Get the modal
 	const modal = query('#modal');
+	const modalContent = query('.modal_content');
 
 	// Get the button that opens the modal
 	const dates = queryAll('.date');
@@ -80,10 +81,12 @@ export function modalPopup() {
 								targetDateDayIndex === 2
 							) {
 								modal.style.display = 'block';
-								modal.style.left = `${dateRight + 16}px`;
+								modalContent.style.top = `10vh`;
+								modalContent.style.left = `${dateRight + 16}px`;
 							} else {
 								modal.style.display = 'block';
-								modal.style.left = `${
+								modalContent.style.top = `10vh`;
+								modalContent.style.left = `${
 									dateLeft - 375 - 16
 								}px`; /* 375 modal width */
 							}
