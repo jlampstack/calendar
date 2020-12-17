@@ -148,9 +148,11 @@ calendar.addEventListener(
 document.addEventListener('keydown', e => {
 	let char = e.which || e.keyCode;
 	if (char === 37 || char === 38) {
+		d.setMonth(d.getMonth() - 1);
 		renderCalendar('l');
 	}
 	if (char === 39 || char === 40) {
+		d.setMonth(d.getMonth() + 1);
 		renderCalendar('r');
 	}
 });
