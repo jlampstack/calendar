@@ -74,7 +74,11 @@ export function modalPopup() {
 							const dateRight = Math.floor(dateLeft + dateWidth);
 
 							// IF day index is 0 or 1 (Sun - Mon), modal should display to right
-							if (targetDateDayIndex === 0 || targetDateDayIndex === 1) {
+							if (
+								targetDateDayIndex === 0 ||
+								targetDateDayIndex === 1 ||
+								targetDateDayIndex === 2
+							) {
 								modal.style.display = 'block';
 								modal.style.left = `${dateRight + 16}px`;
 							} else {
