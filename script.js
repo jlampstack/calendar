@@ -142,6 +142,28 @@ calendar.addEventListener(
 	{ passive: true },
 );
 
+// ========== KEY PRESS EVENTS ========== //
+
+// Scroll month prev or next based if arrow key is pressed
+document.addEventListener('keydown', e => {
+	let char = e.which || e.keyCode;
+	if (char === 37 || char === 38) {
+		renderCalendar('l');
+	}
+	if (char === 39 || char === 40) {
+		renderCalendar('r');
+	}
+});
+
+document.addEventListener('keypress', e => {
+	var char = e.which || e.keyCode || e.charCode;
+	console.log(char);
+	if (char === 37) {
+		console.log(e);
+	}
+	console.log(e);
+});
+
 // ==========  SWIPE TOUCH EVENTS ========== //
 
 /**
