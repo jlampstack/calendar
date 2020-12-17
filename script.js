@@ -157,15 +157,6 @@ document.addEventListener('keydown', e => {
 	}
 });
 
-document.addEventListener('keypress', e => {
-	var char = e.which || e.keyCode || e.charCode;
-	console.log(char);
-	if (char === 37) {
-		console.log(e);
-	}
-	console.log(e);
-});
-
 // ==========  SWIPE TOUCH EVENTS ========== //
 
 /**
