@@ -20,6 +20,8 @@ const datesContainer = query('.calendar_dates');
 const prevArrow = query('.arrow_prev-month');
 const nextArrow = query('.arrow_next-month');
 const monthHeading = query('.calendar_month');
+const viewsBtn = query('.heading_right .btn');
+const viewsDropdown = query('.heading_right .views');
 
 // ==========  FUNCTION SCOPE ========== //
 
@@ -124,6 +126,14 @@ nextArrow.addEventListener('click', e => {
 	d.setMonth(d.getMonth() + 1);
 	renderCalendar('r');
 });
+
+viewsBtn.onclick = e => (viewsDropdown.style.display = 'flex');
+
+window.onclick = e => {
+	if (!e.target.classList.contains('btn')) {
+		viewsDropdown.style.display = 'none';
+	}
+};
 
 // ==========  MOUSE WHEEL EVENTS ========== //
 

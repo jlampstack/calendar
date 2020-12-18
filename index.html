@@ -7,19 +7,50 @@
 		<title>Calendar</title>
 	</head>
 	<body>
+		<!-- Container -->
 		<div class="container">
+			<!-- Calendar -->
 			<div id="calendar">
+				<!-- Heading -->
 				<div class="calendar_heading">
-					<div class="calendar_arrows">
-						<div class="calendar_arrow-focus arrow_prev-month">
-							<span class="calendar_arrow-prev"></span>
-						</div>
-						<div class="calendar_arrow-focus arrow_next-month">
-							<span class="calendar_arrow-next"></span>
+					<!-- Heading Left Section Start-->
+					<div class="heading_left">
+						<!-- Arrows -->
+						<div class="calendar_arrows">
+							<div class="calendar_arrow-focus arrow_prev-month">
+								<span class="calendar_arrow-prev"></span>
+							</div>
+							<div class="calendar_arrow-focus arrow_next-month">
+								<span class="calendar_arrow-next"></span>
+							</div>
 						</div>
 					</div>
-					<div class="calendar_month">loading...</div>
+					<!-- Heading Left Section End -->
+					<!-- Heading Middle Section Start -->
+					<div class="heading_middle">
+						<!-- Month -->
+						<div class="calendar_month">loading...</div>
+					</div>
+					<!-- Heading Middle Section End -->
+					<!-- Heading Right Section Start -->
+					<div class="heading_right">
+						<!-- Drop Down Container -->
+						<div class="dropdown_views">
+							<!-- Drop Down -->
+							<button class="btn">
+								Month <span class="arrow_down"></span>
+							</button>
+							<div class="views">
+								<a href="#">Day</a>
+								<a href="#">Week</a>
+								<a href="#">Month</a>
+								<a href="#">Year</a>
+							</div>
+						</div>
+					</div>
+					<!-- Heading Right Section Ends -->
 				</div>
+				<!-- Calendar Heading End -->
 				<div class="calendar_dates"></div>
 			</div>
 		</div>

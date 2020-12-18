@@ -10,6 +10,7 @@
 	--dark-500: hsl(206, 6%, 33%);
 	--dark-100: hsl(206, 6%, 50%);
 	--light-900: hsl(200, 12%, 75%);
+	--light-800: hsl(80, 5%, 83%);
 	--light-600: hsl(200, 12%, 90%);
 	--light-500: hsl(200, 12%, 95%);
 	--light-100: hsl(200, 12%, 100%);
@@ -53,6 +54,9 @@ body {
 	background: var(--light-100);
 }
 
+/* ========= HEADING ========== */
+
+/* Container */
 .calendar_heading {
 	cursor: default;
 	display: flex;
@@ -63,13 +67,160 @@ body {
 	border-top: 1px solid var(--light-600);
 }
 
+/* ========== HEADING LEFT SECTION ========== */
+
+/* Heading Left Section*/
+.calendar_heading .heading_left {
+	display: flex;
+	align-items: center;
+	width: calc(100% / 3);
+	height: 100%;
+	margin-left: 5vw;
+}
+
+/* ========== ARROWS ========== */
+
+/* Container for arrows */
+.calendar_arrows {
+	display: flex;
+	justify-content: space-around;
+	width: 60px;
+}
+
+.calendar_arrow-focus {
+	position: relative;
+	display: flex;
+	width: 24px;
+	height: 24px;
+	border-radius: 50%;
+	cursor: pointer;
+}
+
+.calendar_arrow-focus:hover {
+	background: var(--light-500);
+}
+
+.calendar_arrow-prev,
+.calendar_arrow-next {
+	position: relative;
+	top: 6.5px;
+	cursor: pointer;
+	width: 10px;
+	height: 10px;
+	background: none;
+}
+
+/* container for arrows */
+.calendar_arrow-prev {
+	left: 12px;
+	transform: rotate(45deg);
+	-webkit-box-shadow: 10px 15px 0px 0px var(--dark-900);
+	box-shadow: -3px 3px 0px 0px var(--dark-900);
+}
+
+.calendar_arrow-next {
+	left: 1px;
+	transform: rotate(45deg);
+	-webkit-box-shadow: 10px 15px 0px 0px var(--dark-900);
+	box-shadow: 3px -3px 0px 0px var(--dark-900);
+}
+
+/* ========== HEADING MIDDLE SECTION ========= */
+
+/* Heading Middle */
+.calendar_heading .heading_middle {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: calc(100% / 3);
+	height: 100%;
+	/* border: 1px solid green; */
+}
+
+/* Title Heading */
 .calendar_month {
 	font-size: 22px;
 	font-weight: 700;
 }
 
-/* Container for all dates */
+/* ========== HEADING RIGHT SECTION ========== */
 
+/* Heading Right Section Container */
+.calendar_heading .heading_right {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-end;
+	align-items: center;
+	margin-right: 5vw;
+	width: calc(100% / 3);
+	height: 100%;
+}
+
+/* Dropdown Views & Button Container */
+.heading_right .dropdown_views {
+	position: relative;
+	right: 0.875rem;
+}
+
+/* Button Container */
+.heading_right .btn {
+	cursor: pointer;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 85px;
+	height: 35px;
+	outline: none;
+	border: none;
+	border-radius: 4px;
+	background: var(--light-800);
+	color: var(--dark-900);
+}
+
+/* Down Arrow for Button */
+.heading_right .btn .arrow_down {
+	position: relative;
+	bottom: 5px;
+	left: 5px;
+	width: 7px;
+	height: 7px;
+	transform: rotate(-45deg);
+	box-shadow: -2px 2px 0px 0px var(--dark-500);
+}
+
+/* Views Popup Menu Container */
+.heading_right .views {
+	z-index: 9990;
+	position: absolute;
+	top: 3rem;
+	right: -3.5rem;
+	width: 200px;
+	border-radius: 3px;
+	display: none;
+	flex-direction: column;
+	padding: 0.5rem 0;
+	background: var(--light-100);
+	box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.4);
+	-webkit-box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.4);
+}
+
+.heading_right .views a {
+	display: flex;
+	align-items: center;
+	text-decoration: none;
+	padding: 1rem 1rem;
+	width: 100%;
+	height: 36px;
+	color: var(--dark-900);
+}
+
+.heading_right .views a:hover {
+	background: hsl(200, 12%, 90%);
+}
+
+/* ========== DATES ========== */
+
+/* Container for all dates */
 .calendar_dates {
 	display: flex;
 	flex-wrap: wrap;
@@ -144,55 +295,6 @@ body {
 .today:hover {
 	color: var(--light-100);
 	background: var(--primary-400);
-}
-
-/* ========= ARROWS ========== */
-
-/* Container for arrows */
-.calendar_arrows {
-	position: absolute;
-	left: 50px;
-	display: flex;
-	justify-content: space-around;
-	width: 60px;
-}
-
-.calendar_arrow-focus {
-	position: relative;
-	display: flex;
-	width: 24px;
-	height: 24px;
-	border-radius: 50%;
-	cursor: pointer;
-}
-
-.calendar_arrow-focus:hover {
-	background: var(--light-500);
-}
-
-.calendar_arrow-prev,
-.calendar_arrow-next {
-	position: relative;
-	top: 6.5px;
-	cursor: pointer;
-	width: 10px;
-	height: 10px;
-	background: none;
-}
-
-/* container for arrows */
-.calendar_arrow-prev {
-	left: 12px;
-	transform: rotate(45deg);
-	-webkit-box-shadow: 10px 15px 0px 0px var(--dark-900);
-	box-shadow: -3px 3px 0px 0px var(--dark-900);
-}
-
-.calendar_arrow-next {
-	left: 1px;
-	transform: rotate(45deg);
-	-webkit-box-shadow: 10px 15px 0px 0px var(--dark-900);
-	box-shadow: 3px -3px 0px 0px var(--dark-900);
 }
 
 /* ========== SLIDE ANIMATIONS ========== */
