@@ -28,32 +28,43 @@ const viewsBtn = query('.heading_right .btn');
 const viewsDropdown = query('.heading_right .views');
 const viewsLinkCollection = queryAll('.heading_right .views a');
 
-// ==========  FUNCTION SCOPE ========== //
-
+// Init calendar with month view
 renderMonth();
+
+// ==========  FUNCTIONS ========== //
+
+// Scroll to previous month
+function prevMonthScroll() {
+	let viewsBtnValue = viewsBtn.getAttribute('value');
+	switch (viewsBtnValue) {
+		case 'month':
+			d.setMonth(d.getMonth() - 1);
+			renderMonth('r');
+			break;
+	}
+}
+
+// Scroll to next month
+function nextMonthScroll() {
+	let viewsBtnValue = viewsBtn.getAttribute('value');
+	switch (viewsBtnValue) {
+		case 'month':
+			d.setMonth(d.getMonth() + 1);
+			renderMonth('l');
+			break;
+	}
+}
 
 // ==========  EVENT LISTENERS ========== //
 
 // Previous Month Arrow
 prevArrow.addEventListener('click', e => {
-	let viewsBtnValue = viewsBtn.getAttribute('value');
-	switch (viewsBtnValue) {
-		case 'month':
-			d.setMonth(d.getMonth() - 1);
-			renderMonth('l');
-			break;
-	}
+	prevMonthScroll();
 });
 
 // Next Month Arrow
 nextArrow.addEventListener('click', e => {
-	let viewsBtnValue = viewsBtn.getAttribute('value');
-	switch (viewsBtnValue) {
-		case 'month':
-			d.setMonth(d.getMonth() + 1);
-			renderMonth('r');
-			break;
-	}
+	nextMonthScroll();
 });
 
 // Views Button
@@ -76,49 +87,22 @@ calendar.addEventListener(
 	'wheel',
 	e => {
 		if (e.deltaY < 0) {
-			let viewsBtnValue = viewsBtn.getAttribute('value');
-			switch (viewsBtnValue) {
-				case 'month':
-					d.setMonth(d.getMonth() - 1);
-					renderMonth('r');
-					break;
-			}
+			prevMonthScroll();
 		} else if (e.deltaY > 0) {
-			let viewsBtnValue = viewsBtn.getAttribute('value');
-			switch (viewsBtnValue) {
-				case 'month':
-					d.setMonth(d.getMonth() + 1);
-					renderMonth('l');
-					break;
-			}
+			nextMonthScroll();
 		}
 	},
 	{ passive: true },
 );
 
-// ========== KEY PRESS EVENTS ========== //
-
-// Scroll month prev or next based if arrow key is pressed
+// Key Press Events: Up Left = Prev, Down Right = Next
 document.addEventListener('keydown', e => {
-	let viewsBtnValue = viewsBtn.getAttribute('value');
-	let viewsBtnData = viewsBtn.getAttribute('data-calendar-view');
-
-	switch (viewsBtnValue) {
-		case 'month':
-			console.log(viewsBtnValue);
-			d.setMonth(d.getMonth() + 1);
-			renderMonth('r');
-			break;
-	}
-
 	let char = e.which || e.keyCode;
 	if (char === 37 || char === 38) {
-		d.setMonth(d.getMonth() - 1);
-		renderMonth('l');
+		prevMonthScroll();
 	}
 	if (char === 39 || char === 40) {
-		d.setMonth(d.getMonth() + 1);
-		renderMonth('r');
+		nextMonthScroll();
 	}
 });
 
