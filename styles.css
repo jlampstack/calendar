@@ -218,7 +218,9 @@ body {
 	background: hsl(200, 12%, 90%);
 }
 
-/* ========== DATES ========== */
+/* ========== DATES & VIEWS ========== */
+
+/* Default view is "Month" */
 
 /* Container for all dates */
 .calendar_dates {
