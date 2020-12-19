@@ -146,12 +146,10 @@ function handleTouchMove(evt) {
 		/*most significant*/
 		if (xDiff > 0) {
 			/* Render next month */
-			d.setMonth(d.getMonth() + 1);
-			renderMonth('l');
+			nextMonthScroll();
 		} else {
 			/* Render previous month */
-			d.setMonth(d.getMonth() - 1);
-			renderMonth('l');
+			prevMonthScroll();
 		}
 	}
 	/* reset values */
