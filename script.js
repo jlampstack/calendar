@@ -37,6 +37,12 @@ renderMonth();
 function prevMonthScroll() {
 	let viewsBtnValue = viewsBtn.getAttribute('value');
 	switch (viewsBtnValue) {
+		case 'week':
+			let jay = d;
+			console.log(jay);
+			d.setDate(jay);
+			renderWeek('r');
+			break;
 		case 'month':
 			d.setMonth(d.getMonth() - 1);
 			renderMonth('r');
@@ -147,11 +153,11 @@ function handleTouchMove(evt) {
 		if (xDiff > 0) {
 			/* Render next month */
 			d.setMonth(d.getMonth() + 1);
-			renderMonth('l');
+			renderCalendar('l');
 		} else {
 			/* Render previous month */
 			d.setMonth(d.getMonth() - 1);
-			renderMonth('l');
+			renderCalendar('l');
 		}
 	}
 	/* reset values */
