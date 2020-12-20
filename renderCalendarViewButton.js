@@ -1,5 +1,6 @@
-import { renderMonth } from './renderMonth.js';
+import { renderDay } from './renderDay.js';
 import { renderWeek } from './renderWeek.js';
+import { renderMonth } from './renderMonth.js';
 
 // Query Alias
 const query = document.querySelector.bind(document);
@@ -15,6 +16,13 @@ function htmlButton(data) {
 export function renderCalendarView(event) {
 	let targetViewText = event.target.innerText;
 	switch (targetViewText) {
+		case 'Day':
+			btn.innerHTML = `Day <span class="arrow_down"></span>`;
+			btn.setAttribute('value', 'day');
+			dropdownBtnViews.style.display = 'none';
+			htmlButton();
+			renderDay();
+			break;
 		case 'Week':
 			btn.innerHTML = `Week <span class="arrow_down"></span>`;
 			btn.setAttribute('value', 'week');

@@ -6,6 +6,7 @@ import {
 	getLastDateOfMonth,
 } from './date.js';
 
+import { renderDay } from './renderDay.js';
 import { renderMonth } from './renderMonth.js';
 import { renderWeek } from './renderWeek.js';
 
@@ -29,7 +30,8 @@ const viewsDropdown = query('.heading_right .views');
 const viewsLinkCollection = queryAll('.heading_right .views a');
 
 // Init calendar with month view
-renderMonth();
+renderDay();
+// renderMonth();
 
 // ==========  FUNCTIONS ========== //
 
