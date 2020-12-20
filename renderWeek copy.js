@@ -37,23 +37,19 @@ export function renderWeek(direction = null) {
 	// Markup inside <div> .calendar_dates
 	datesContainer.innerHTML = `<div class="row">`;
 
-	const row = query('.row');
-
-	row.innerHTML = '';
-
 	// ADD OFFSET DATES: Dates before day of week index
 	for (let i = today.getDate() - today.getDay(); i < today.getDate(); i++) {
 		let date = new Date(d.getDate(), d.getMonth(), i);
-		row.innerHTML += `<div class="date"><div class="date_num" data-date="${date}">${date.getDate()}</div></div>`;
+		datesContainer.innerHTML += `<div class="date"><div class="date_num" data-date="${date}">${date.getDate()}</div></div>`;
 	}
 
 	// ADD REMAINING DATES: Today & Remaining dates of the week
 	for (let j = today.getDate(); j < 7 - today.getDay() + today.getDate(); j++) {
 		let date = new Date(d.getFullYear(), d.getMonth(), j);
 		if (date.getDate() === today.getDate()) {
-			row.innerHTML += `<div class="date"><div class="date_num today" data-date="${date}">${date.getDate()}</div></div>`;
+			datesContainer.innerHTML += `<div class="date"><div class="date_num today" data-date="${date}">${date.getDate()}</div></div>`;
 		} else {
-			row.innerHTML += `<div class="date"><div class="date_num" data-date="${date}">${date.getDate()}</div></div>`;
+			datesContainer.innerHTML += `<div class="date"><div class="date_num" data-date="${date}">${date.getDate()}</div></div>`;
 		}
 	}
 
@@ -74,9 +70,17 @@ export function renderWeek(direction = null) {
 
 	// ANIMATE: calendar scroll direction ('left' or 'right')
 	if (direction !== null) {
+		const row = query('.row');
 		const slideDirection = `slide-${direction}`;
 		row.classList.add(slideDirection);
 	}
+
+	// if (direction !== null) {
+	// 	const slideDirection = `slide-${direction}`;
+	// 	rowCollection.forEach(row => {
+	// 		row.classList.add(slideDirection);
+	// 	});
+	// }
 
 	// ==========  MODAL TASK ========== //
 
