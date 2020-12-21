@@ -2177,8 +2177,9 @@ h1 {
 /* ========== TIME ========== */
 /* Container for all time slots */
 .scroller {
-  overflow: auto;
+  overflow: scroll;
   flex-grow: 1;
+  height: 1px;
 }
 
 /* Individual Time Slot */
