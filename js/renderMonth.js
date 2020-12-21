@@ -1,10 +1,6 @@
-import {
-	d,
-	months,
-	daysShort,
-	getOffsetStart,
-	getLastDateOfMonth,
-} from './date.js';
+import { d, daysShort, getOffsetStart, getLastDateOfMonth } from './date.js';
+
+import { renderHeading } from './renderHeading.js';
 
 import { modalPopup } from './modal.js';
 
@@ -16,15 +12,13 @@ const queryAll = document.querySelectorAll.bind(document);
 
 // Elements
 const datesContainer = query('.calendar_dates');
-const monthHeading = query('.calendar_month');
 
 // ==========  FUNCTION SCOPE ========== //
 
 // Renders Month
 export function renderMonth(direction = null) {
-	// Month heading
-	monthHeading.innerText = `${months[d.getMonth()]} ${d.getFullYear()}`;
-
+	// Heading
+	renderHeading();
 	// Returns 5 or 6 rows depending on month
 	const numRows = getOffsetStart() + getLastDateOfMonth() > 35 ? 6 : 5;
 	const numDatesTotal = numRows * 7;

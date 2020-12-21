@@ -1,10 +1,7 @@
-import {
-	d,
-	months,
-	daysShort,
-	getOffsetStart,
-	getLastDateOfMonth,
-} from './date.js';
+import { d } from './date.js';
+
+import { renderHeading } from './renderHeading.js';
+import { renderTimeSlots } from './renderTimeSlots.js';
 
 import { modalPopup } from './modal.js';
 
@@ -16,7 +13,6 @@ const queryAll = document.querySelectorAll.bind(document);
 
 // Elements
 const datesContainer = query('.calendar_dates');
-const monthHeading = query('.calendar_month');
 
 // ==========  FUNCTION SCOPE ========== //
 
@@ -26,9 +22,8 @@ const today = new Date(d.getFullYear(), d.getMonth(), d.getDate());
 
 // Renders Month
 export function renderWeek(direction = null) {
-	// Month heading
-	monthHeading.innerText = `${months[d.getMonth()]} ${d.getFullYear()}`;
-
+	// Heading
+	renderHeading();
 	// Markup inside <div> .calendar_dates
 	datesContainer.innerHTML = `<div class="row">`;
 
@@ -48,7 +43,10 @@ export function renderWeek(direction = null) {
 		if (date.getDate() === today.getDate()) {
 			row.innerHTML += `<div class="date"><div class="date_num today" data-date="${date}">${date.getDate()}</div></div>`;
 		} else {
-			row.innerHTML += `<div class="date"><div class="date_num" data-date="${date}">${date.getDate()}</div></div>`;
+			row.innerHTML += `<div class="date">
+							<div class="date_num" data-date="${date}">${date.getDate()}</div>
+							
+					</div>`;
 		}
 	}
 
