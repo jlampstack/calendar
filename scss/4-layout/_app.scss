@@ -1,0 +1,17 @@
+// -----------------------------------------------------------------------------
+// This file contains all styles related to the app container
+// -----------------------------------------------------------------------------
+
+/**
+ * App container
+ * 1. Wraps entire application [nav, [page]]
+ * 2. Center app
+ * 3. Row
+ */
+
+.app {
+  margin: 0 auto; /* centers app */
+  display: flex;
+  height: 100vh;
+  width: 100%;
+}

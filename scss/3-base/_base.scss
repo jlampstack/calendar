@@ -1,0 +1,70 @@
+// -----------------------------------------------------------------------------
+// This file contains very basic styles. Base over-rides normalize.scss
+// and allows us to easily track our changes without affecting normalize.
+// -----------------------------------------------------------------------------
+
+/**
+ * Set up a decent box model on the root element
+ */
+html {
+  box-sizing: border-box;
+	font-family: 'Roboto', sans-serif;
+}
+
+/**
+ * Make all elements from the DOM inherit from the parent box-sizing
+ * Since `*` has a specificity of 0, it does not override the `html` value
+ * making all elements inheriting from the root box-sizing value
+ * @see  https://css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice/
+ */
+*,
+*::before,
+*::after {
+  font-family: $sans;
+  box-sizing: border-box; /* default: content-box */
+  // border: 1px solid pink;
+}
+
+/**
+ * Body Wrapper
+ * 
+ * 1. Turns body into  a container
+ * 2. Centers app
+ * 3. Makes responsive at each breakpoint
+ * 4. .wrapper is used for a "single" object to provide it with more functionality. Here, body is used as the wrapper instead of creating a new .wrapper style
+ * 5. .container for multiple objects 
+ */
+
+body {
+  transition-duration: 300ms;
+  transition-timing-function: ease-out;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0;
+  color: map-get-deep($palette, 'dark', '900');
+  background: map-get-deep($palette, 'light', '100');
+}
+
+
+
+/**
+ * Basic styles for links
+ */
+a {
+  color: map-get-deep($palette, 'primary', '500');
+  text-decoration: none;
+}
+
+///////////////
+// - LISTS
+//////////////
+
+ul {
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  list-style: none;
+}

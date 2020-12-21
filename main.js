@@ -4,13 +4,14 @@ import {
 	daysShort,
 	getOffsetStart,
 	getLastDateOfMonth,
-} from './date.js';
+} from './js/date.js';
 
-import { renderMonth } from './renderMonth.js';
-import { renderWeek } from './renderWeek.js';
+import { renderDay } from './js/renderDay.js';
+import { renderMonth } from './js/renderMonth.js';
+import { renderWeek } from './js/renderWeek.js';
 
-import { renderCalendarView } from './renderCalendarViewButton.js';
-import { modalPopup } from './modal.js';
+import { renderCalendarView } from './js/renderCalendarViewButton.js';
+import { modalPopup } from './js/modal.js';
 
 // ==========  GLOBAL ELEMENTS ========== //
 
@@ -24,19 +25,19 @@ const datesContainer = query('.calendar_dates');
 const prevArrow = query('.arrow_prev-month');
 const nextArrow = query('.arrow_next-month');
 const monthHeading = query('.calendar_month');
-const viewsBtn = query('.heading_right .btn');
-const viewsDropdown = query('.heading_right .views');
-const viewsLinkCollection = queryAll('.heading_right .views a');
+const viewsButton = query('.dropdown_views .btn');
+const viewsDropdownMenu = query('.dropdown_views .menu');
 
 // Init calendar with month view
+// renderDay();
 renderMonth();
 
 // ==========  FUNCTIONS ========== //
 
 // Scroll to previous month
 function prevMonthScroll() {
-	let viewsBtnValue = viewsBtn.getAttribute('value');
-	switch (viewsBtnValue) {
+	let viewsButtonValue = viewsButton.getAttribute('value');
+	switch (viewsButtonValue) {
 		case 'week':
 			let jay = d;
 			console.log(jay);
@@ -52,8 +53,8 @@ function prevMonthScroll() {
 
 // Scroll to next month
 function nextMonthScroll() {
-	let viewsBtnValue = viewsBtn.getAttribute('value');
-	switch (viewsBtnValue) {
+	let viewsButtonValue = viewsButton.getAttribute('value');
+	switch (viewsButtonValue) {
 		case 'month':
 			d.setMonth(d.getMonth() + 1);
 			renderMonth('l');
@@ -74,28 +75,30 @@ nextArrow.addEventListener('click', e => {
 });
 
 // Views Button
-viewsBtn.onclick = e => {
-	viewsDropdown.style.display = 'flex';
+viewsButton.onclick = e => {
+	viewsDropdownMenu.style.display = 'flex';
 };
 
 // Views Drop Down Menu
-viewsDropdown.onclick = e => renderCalendarView(e);
+viewsDropdownMenu.onclick = e => renderCalendarView(e);
 
 // Window
 window.onclick = e => {
 	if (!e.target.classList.contains('btn')) {
-		viewsDropdown.style.display = 'none';
+		viewsDropdownMenu.style.display = 'none';
 	}
 };
 
 // Wheel Events: Up displays prev month, down displays next month
-calendar.addEventListener(
+datesContainer.addEventListener(
 	'wheel',
 	e => {
-		if (e.deltaY < 0) {
-			prevMonthScroll();
-		} else if (e.deltaY > 0) {
-			nextMonthScroll();
+		if (viewsButton.getAttribute('value') == 'month') {
+			if (e.deltaY < 0) {
+				prevMonthScroll();
+			} else if (e.deltaY > 0) {
+				nextMonthScroll();
+			}
 		}
 	},
 	{ passive: true },

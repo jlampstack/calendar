@@ -1,0 +1,154 @@
+// -----------------------------------------------------------------------------
+// This file contains all application-wide Sass mixins.
+// -----------------------------------------------------------------------------
+
+// ========== ANIMATIONS ========== //
+
+// Slide Right
+
+.slide-r {
+	position: relative;
+	animation-name: slide-r;
+	animation-duration: 500ms;
+}
+
+@keyframes slide-r {
+	0% {
+		opacity: 0.4;
+		right: 30%;
+	}
+	100% {
+		right: 0;
+		opacity: 1;
+	}
+}
+
+// Slide left
+
+.slide-l {
+	position: relative;
+	animation-name: slide-l;
+	animation-duration: 400ms;
+}
+
+@keyframes slide-l {
+	0% {
+		opacity: 0;
+		left: 30%;
+	}
+	100% {
+		left: 0;
+		opacity: 1;
+	}
+}
+
+
+// ========= SHAPES ========== //
+
+@mixin square($size, $radius: 0) {
+  width: $size;
+  height: $size;
+
+  @if $radius != 0 {
+    border-radius: 10px solid pink;
+  }
+  @else {
+    border: 1px solid orange;
+    border-radius: $radius;
+  }
+}
+
+// ========== BACKGROUND COLORS ========== //
+
+@mixin bg-colors($map) {
+	@each $theme, $color in $map {
+		&--#{$theme} {
+			background-color: $color;    
+		}
+	}
+}
+
+// ========== BEM selectors ========== // 
+
+@mixin e($element) {
+	&__#{$element} {
+    @content;
+  }
+}
+@mixin m($modifier) {
+  &--#{$modifier} {
+    @content;
+  }
+}
+
+// ========== BREAKPOINTS ========== //
+
+/// Represents a media query
+/// @author Jay Lampstack
+/// @param {string} break ['xs', 'sm', 'md', 'lg', 'xl']
+
+@mixin breakpoint($break) {
+  @if $break == 'xs' {
+    @media (min-width: map-get($breakpoints, 'xs')) {
+      @content;
+    }
+  }
+  @else if $break == 'sm' {
+    @media (min-width: map-get($breakpoints, 'sm')) {
+      @content;
+    }
+  }
+  @else if $break == 'md' {
+    @media (min-width: map-get($breakpoints, 'md')) {
+      @content;
+    }
+  }
+  @else if $break == 'lg' {
+    @media (min-width: map-get($breakpoints, 'lg')) {
+      @content;
+    }
+  }
+  @else if $break == 'xl' {
+    @media (min-width: map-get($breakpoints, 'xl')) {
+      @content;
+    }
+  }
+   @else {
+   	@error "Whoops! No value could be retrieved for `#{$break}`.";
+  }
+}
+
+
+// ========== TYPOGRAPHY ========== //
+
+/// Converts px to rem
+/// @author Chris Coyier
+/// @see https://css-tricks.com/snippets/sass/px-to-em-functions/
+/// @param { number } $pixels - Size in pixels you want the font to be
+/// @param { number } $context - Default value is the $browser-context
+
+$browser-context: 16; // Default font size
+
+// px-to-rem
+
+@function rem($pixels, $context: $browser-context) {
+  @return #{$pixels/$context}rem;
+}
+
+// px-to-em
+
+@function em($pixels, $context: $browser-context) {
+  @return #{$pixels/$context}rem;
+}
+
+/// Make a context based selector a little more friendly
+/// @author Hugo Giraudel
+/// @param {String} $context
+
+@mixin when-inside($context) {
+  #{$context} & {
+    @content;
+  }
+}
+
+

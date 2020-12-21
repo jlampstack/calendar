@@ -1,0 +1,271 @@
+// -----------------------------------------------------------------------------
+// This is the Sass configuration and contains all application-wide variables. 
+// -----------------------------------------------------------------------------
+
+///////////////////////
+// - COLOUR PALETTE 
+//////////////////////
+
+$palette: (
+    'primary': (
+        '100': hsl(214, 82%, 97%), /* lightest */
+        '200': hsl(214, 82%, 79%),
+        '400': hsl(209, 82%, 53%),
+        '500': hsl(214, 82%, 51%), /* base */
+        '600': hsl(214, 82%, 39%),
+    ),
+    'light': (
+        '100': hsl(200, 12%, 100%), /* lightest, white*/
+        '500': hsl(200, 12%, 95%), /* base */
+        '600': hsl(200, 12%, 90%),
+        '800': hsl(80, 5%, 83%),
+        '900': hsl(200, 12%, 75%), /* darkest */
+    ),
+    'dark': (
+        '100': hsl(206, 6%, 50%), /* lightest */
+        '200': hsl(206, 6%, 45%),
+        '400': hsl(206, 6%, 40%),
+        '500': hsl(206, 6%, 33%), /* base */
+        '900':  hsl(206, 6%, 25%), /* darkest, black */
+    ),
+);
+
+
+///////////////////
+// - TYPOGRAPHY
+//////////////////
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+$sans: 'Roboto', 'Arial', 'Helvetica', sans-serif;
+$serif: 'Cambria','Georgia', 'Times', serif;
+$mono: 'Consolas';
+
+$headings: (
+    'h1': rem(40),
+    'h2': rem(32),
+    'h3': rem(28),
+    'h4': rem(24),
+    'h5': rem(20),
+    'h6': rem(16),
+);
+
+$displays: (
+    'd1': rem(96),
+    'd2': rem(88),
+    'd3': rem(72),
+    'd4': rem(56),
+);
+
+$fontSize: (
+    'xs'  : rem(9),
+    'sm'  : rem(14),
+    'base': rem(16),
+    'lg'  : rem(18),
+    'xl'  : rem(20),
+    '2xl' : rem(24),
+    '3xl' : rem(30),
+    '4xl' : rem(36),
+    '5xl' : rem(48),
+    '6xl' : rem(64),
+);
+
+$fontWeight: (
+    'hairline' : '100',
+    'thin'     : '200',
+    'light'    : '300',
+    'normal'   : '400',
+    'medium'   : '500',
+    'semibold' : '600',
+    'bold'     : '700',
+    'extrabold': '800',
+    'black'    : '900',
+);
+ 
+$letterSpacing: (
+    'tighter': '-0.05em',
+    'tight'  : '-0.025em',
+    'normal' : '0',
+    'wide'   : '0.025em',
+    'wider'  : '0.05em',
+    'widest' : '0.1em',
+);
+
+// line height
+
+$leading: (
+    'none': '1',
+    'tight': '1.25',
+    'snug': '1.375',
+    'normal': '1.5',
+    'relaxed': '1.625',
+    'loose': '2',
+    '3': '.75rem',
+    '4': '1rem',
+    '5': '1.25rem',
+    '6': '1.5rem',
+    '7': '1.75rem',
+    '8': '2rem',
+    '9': '2.25rem',
+    '10': '2.5rem',
+);
+
+/////////////////////////////////////
+// - SPACING AND FLEX POSITIONING
+////////////////////////////////////
+
+$spacing: (
+    'px': '1px',
+    '0' : '0',
+    '1' : '0.25rem',
+    '2' : '0.5rem',
+    '3' : '0.75rem',
+    '4' : '1rem',
+    '5' : '1.25rem',
+    '6' : '1.5rem',
+    '8' : '2rem',
+    '10': '2.5rem',
+    '12': '3rem',
+    '16': '4rem',
+    '20': '5rem',
+    '24': '6rem',
+    '32': '8rem',
+    '40': '10rem',
+    '48': '12rem',
+    '56': '14rem',
+    '64': '16rem',
+);
+
+////////////////////
+// - BREAKPOITNS 
+///////////////////
+
+/// Minimum breakpoint widths
+
+$breakpoints: (
+  'xs'     : rem(0),   // portrait phones and less
+  'sm'     : rem(576), // landscape phones
+  'md'     : rem(640), // tablets
+  'lg'     : rem(768), // desktops
+  'xl'     : rem(992), // large desktops
+);
+
+$container-max-width: rem(1280);
+
+/// Minimum & Maxium breakpoint widths
+/// @example media queries
+/// @example 2. containers
+/// min-width only required for xs breakpoint
+
+/// Gutters
+
+$gutter: rem(10);
+
+
+////////////////
+// - FLEXBOX 
+///////////////
+
+$flex-direction: (
+  'x'  : 'row',
+  'xr' : 'row-reverse',
+  'y'  : 'column',
+  'yr' : 'column-reverse',
+);
+
+$justify-content: (
+  'jc-s'  : 'flex-start',
+  'jc-e'  : 'flex-end',
+  'jc-c'  : 'center',
+  'jc-sb' : 'space-between',
+  'jc-sa' : 'space-around',
+  'jc-se' : 'space-evenly',
+);
+
+$align-items: (
+  'ai-s' : 'flex-start',
+  'ai-e' : 'flex-end',
+  'ai-c' : 'center',
+  'ai-b' : 'baseline',
+  'ai-stretch' : 'stretch',
+);
+
+$align-content: (
+    'ac-s'  : 'flex-start',
+    'ac-e'  : 'flex-end',
+    'ac-c'  : 'center',
+    'ac-sb' : 'space-between',
+    'ac-sa' : 'space-around',
+    'ac-se' : 'space-evenly',
+    'ac-stretch' : 'stretch',
+);
+
+$align-self: (
+  'as-s' : 'flex-start',
+  'as-e' : 'flex-end',
+  'as-c' : 'center',
+  'as-b' : 'baseline',
+  'as-stretch' : 'stretch',
+ );
+
+///////////////////
+// - BOX SHADOWS
+//////////////////
+
+$boxShadow: (
+    'xs'     : '0 0 0 1px rgba(0, 0, 0, 0.05)',
+    'sm'     : '0 1px 2px 0 rgba(0, 0, 0, 0.05)',
+    'md'     : '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+    'lg'     : '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
+    'xl'     : '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
+    '2xl'    : '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
+    'inner'  : 'inset 0 2px 4px 0 rgba(0, 0, 0, 0.06)',
+    'outline': '0 0 0 3px rgba(66, 153, 225, 0.5)',
+    'none'   : 'none',
+);
+
+////////////////////
+// - TRANSITIONS
+///////////////////
+
+$transition: (
+    '100' : '75ms',
+    '200' : '100ms',
+    '300' : '150ms',
+    '400' : '200ms',
+    '500' : '300ms',
+    '600' : '500ms',
+    '700' : '700ms',
+    '800': '1000ms',
+);
+
+// ------------------------------------------------------------------------------
+// This is the config file for all stylesheets related to the dashboard component
+// ------------------------------------------------------------------------------
+
+//////////////////
+// - NAVIGATION
+/////////////////
+
+$nav-max-width: 275px;
+$nav-bg: #f5f5f5;
+
+//////////////////
+// - USER
+/////////////////
+
+$user-max-width: 600px; 
+$user-border: none;
+
+////////////////
+// - PROFILE 
+///////////////
+
+$profile-width: 600px;
+
+/////////////////
+// - PROJECTS
+////////////////
+
+$projects-bg: #f5f5f5;
+$projects-width: 350px;

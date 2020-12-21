@@ -15,13 +15,8 @@ const query = document.querySelector.bind(document);
 const queryAll = document.querySelectorAll.bind(document);
 
 // Elements
-const calendar = query('#calendar');
 const datesContainer = query('.calendar_dates');
-const prevArrow = query('.arrow_prev-month');
-const nextArrow = query('.arrow_next-month');
 const monthHeading = query('.calendar_month');
-const viewsBtn = query('.heading_right .btn');
-const viewsDropdown = query('.heading_right .views');
 
 // ==========  FUNCTION SCOPE ========== //
 
@@ -37,19 +32,23 @@ export function renderWeek(direction = null) {
 	// Markup inside <div> .calendar_dates
 	datesContainer.innerHTML = `<div class="row">`;
 
+	const row = query('.row');
+
+	row.innerHTML = '';
+
 	// ADD OFFSET DATES: Dates before day of week index
 	for (let i = today.getDate() - today.getDay(); i < today.getDate(); i++) {
 		let date = new Date(d.getDate(), d.getMonth(), i);
-		datesContainer.innerHTML += `<div class="date"><div class="date_num" data-date="${date}">${date.getDate()}</div></div>`;
+		row.innerHTML += `<div class="date"><div class="date_num" data-date="${date}">${date.getDate()}</div></div>`;
 	}
 
 	// ADD REMAINING DATES: Today & Remaining dates of the week
 	for (let j = today.getDate(); j < 7 - today.getDay() + today.getDate(); j++) {
 		let date = new Date(d.getFullYear(), d.getMonth(), j);
 		if (date.getDate() === today.getDate()) {
-			datesContainer.innerHTML += `<div class="date"><div class="date_num today" data-date="${date}">${date.getDate()}</div></div>`;
+			row.innerHTML += `<div class="date"><div class="date_num today" data-date="${date}">${date.getDate()}</div></div>`;
 		} else {
-			datesContainer.innerHTML += `<div class="date"><div class="date_num" data-date="${date}">${date.getDate()}</div></div>`;
+			row.innerHTML += `<div class="date"><div class="date_num" data-date="${date}">${date.getDate()}</div></div>`;
 		}
 	}
 
@@ -70,17 +69,9 @@ export function renderWeek(direction = null) {
 
 	// ANIMATE: calendar scroll direction ('left' or 'right')
 	if (direction !== null) {
-		const row = query('.row');
 		const slideDirection = `slide-${direction}`;
 		row.classList.add(slideDirection);
 	}
-
-	// if (direction !== null) {
-	// 	const slideDirection = `slide-${direction}`;
-	// 	rowCollection.forEach(row => {
-	// 		row.classList.add(slideDirection);
-	// 	});
-	// }
 
 	// ==========  MODAL TASK ========== //
 

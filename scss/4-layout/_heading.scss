@@ -1,0 +1,28 @@
+/* ========== HEADING LEFT SECTION ========== */
+
+.calendar_heading .heading_left {
+	display: flex;
+	align-items: center;
+	height: 100%;
+}
+
+
+/* ========== HEADING LEFT SECTION ========== */
+
+/* Title Heading */
+.calendar_month {
+	margin-left: 1.5rem;
+	font-size: 22px;
+	color: map-get-deep($palette, 'dark', '500');
+}
+
+/* ========== HEADING RIGHT SECTION ========== */
+
+/* Heading Right Section Container */
+.calendar_heading .heading_right {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-end;
+	align-items: center;
+	height: 100%;
+}

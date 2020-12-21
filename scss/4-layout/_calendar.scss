@@ -1,0 +1,26 @@
+#calendar {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	height: 100%;
+  background: map-get-deep($palette, 'light', '100');
+}
+
+.calendar_heading {
+	align-self: center;
+	cursor: default;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 99%;
+	/* height: 100px; */
+	height: 60px;
+	border-top: 1px solid map-get-deep($palette, 'light', '600');
+}
+
+/* Heading Left Section*/
+.calendar_heading .heading_left {
+	display: flex;
+	align-items: center;
+	height: 100%;
+}

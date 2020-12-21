@@ -1,0 +1,51 @@
+// -----------------------------------------------------------------------------
+// This file contains all styles related to arrows.
+// -----------------------------------------------------------------------------
+
+/* ========== ARROWS ========== */
+
+/* Container for arrows */
+.calendar_arrows {
+	display: flex;
+	justify-content: space-around;
+	width: 60px;
+}
+
+.calendar_arrow-focus {
+	position: relative;
+	display: flex;
+	width: 24px;
+	height: 24px;
+	border-radius: 50%;
+	cursor: pointer;
+}
+
+.calendar_arrow-focus:hover {
+	background: map-get-deep($palette, 'light', '500');
+}
+
+.calendar_arrow-prev,
+.calendar_arrow-next {
+	position: relative;
+	top: 6.5px;
+	cursor: pointer;
+	width: 10px;
+	height: 10px;
+	background: none;
+	
+}
+
+/* container for arrows */
+.calendar_arrow-prev {
+	left: 12px;
+	transform: rotate(45deg);
+	-webkit-box-shadow: 10px 15px 0px 0px map-get-deep($palette, 'dark', '900');
+	box-shadow: -3px 3px 0px 0px map-get-deep($palette, 'dark', '900');
+}
+
+.calendar_arrow-next {
+	left: 1px;
+	transform: rotate(45deg);
+	-webkit-box-shadow: 10px 15px 0px 0px map-get-deep($palette, 'dark', '900');
+	box-shadow: 3px -3px 0px 0px map-get-deep($palette, 'dark', '900');
+}
