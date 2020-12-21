@@ -25,19 +25,19 @@ const datesContainer = query('.calendar_dates');
 const prevArrow = query('.arrow_prev-month');
 const nextArrow = query('.arrow_next-month');
 const monthHeading = query('.calendar_month');
-const viewsButton = query('.dropdown_views .btn');
+const viewsBtn = query('.dropdown_views .btn');
 const viewsDropdownMenu = query('.dropdown_views .menu');
 
 // Init calendar with month view
-// renderDay();
-renderMonth();
+renderDay();
+// renderMonth();
 
 // ==========  FUNCTIONS ========== //
 
 // Scroll to previous month
 function prevMonthScroll() {
-	let viewsButtonValue = viewsButton.getAttribute('value');
-	switch (viewsButtonValue) {
+	let viewsBtnValue = viewsBtn.getAttribute('value');
+	switch (viewsBtnValue) {
 		case 'week':
 			let jay = d;
 			console.log(jay);
@@ -53,8 +53,8 @@ function prevMonthScroll() {
 
 // Scroll to next month
 function nextMonthScroll() {
-	let viewsButtonValue = viewsButton.getAttribute('value');
-	switch (viewsButtonValue) {
+	let viewsBtnValue = viewsBtn.getAttribute('value');
+	switch (viewsBtnValue) {
 		case 'month':
 			d.setMonth(d.getMonth() + 1);
 			renderMonth('l');
@@ -75,7 +75,7 @@ nextArrow.addEventListener('click', e => {
 });
 
 // Views Button
-viewsButton.onclick = e => {
+viewsBtn.onclick = e => {
 	viewsDropdownMenu.style.display = 'flex';
 };
 
@@ -90,15 +90,13 @@ window.onclick = e => {
 };
 
 // Wheel Events: Up displays prev month, down displays next month
-datesContainer.addEventListener(
+calendar.addEventListener(
 	'wheel',
 	e => {
-		if (viewsButton.getAttribute('value') == 'month') {
-			if (e.deltaY < 0) {
-				prevMonthScroll();
-			} else if (e.deltaY > 0) {
-				nextMonthScroll();
-			}
+		if (e.deltaY < 0) {
+			prevMonthScroll();
+		} else if (e.deltaY > 0) {
+			nextMonthScroll();
 		}
 	},
 	{ passive: true },

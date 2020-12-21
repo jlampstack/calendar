@@ -40,12 +40,42 @@ export function renderDay(direction = null) {
 
 	function timeSlots() {
 		let htmlOutput = `<div class="scroller">`;
+		let hour = d.getHours(); // current hour
+
+		// Add Timeslots
 		for (let i = 0; i < 24; i++) {
-			htmlOutput += `<div class="time-slot"><span>${i + 1} AM</span></div>`;
+			if (i < 13) {
+				// Midnight
+				if (i == 0) {
+					htmlOutput += `<div class="time-slot"><span>12 AM</span></div>`;
+				} else {
+					htmlOutput += `<div class="time-slot"><span>${i} AM</span></div>`;
+				}
+			} else {
+				htmlOutput += `<div class="time-slot"><span>${i - 12} PM</span></div>`;
+			}
 		}
+
 		htmlOutput += `</div>`;
 		return htmlOutput;
 	}
+
+	// Query after rendered to dom
+	let timeSlotCollection = queryAll('.time-slot');
+
+	// Listen for click on targeted timeslot
+	timeSlotCollection.forEach((timeslot, index) => {
+		// Add focus to Current Hour
+		if (index === d.getHours()) {
+			console.log(index, timeslot);
+			timeslot.style.borderBottom = '1px solid red';
+		}
+		// Listen for click to target hour slot
+		timeslot.addEventListener('click', e => {
+			console.log(e.target);
+			modalPopup();
+		});
+	});
 
 	const dateCollection = queryAll('.date');
 
