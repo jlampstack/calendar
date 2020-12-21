@@ -1,0 +1,11 @@
+
+/* Default view is "Month" */
+
+/* Container for all dates */
+.calendar_dates {
+	overflow: hidden;
+	display: flex;
+	flex-wrap: wrap;
+	height: 100%;
+	border: 1px solid map-get-deep($palette, 'light', '600');
+}

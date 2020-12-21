@@ -1,0 +1,22 @@
+{
+	"name": "calendar",
+	"version": "1.0.0",
+	"description": "Calendar with views for day, week, month, year",
+	"main": "main.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/jlampstack/calendar.git"
+	},
+	"author": "jlampstack",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/jlampstack/calendar/issues"
+	},
+	"homepage": "https://github.com/jlampstack/calendar#readme",
+	"dependencies": {
+		"sass": "^1.30.0"
+	}
+}

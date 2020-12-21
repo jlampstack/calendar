@@ -1,0 +1,11 @@
+// -----------------------------------------------------------------------------
+// This file contains all styles related to the logo component.
+// -----------------------------------------------------------------------------
+
+// ========== LOGO ========== //
+
+.logo {
+  margin-left: rem(30);
+  font-size: rem(22);
+  color: map-get-deep($palette, 'primary', '500');
+}

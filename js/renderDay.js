@@ -15,13 +15,8 @@ const query = document.querySelector.bind(document);
 const queryAll = document.querySelectorAll.bind(document);
 
 // Elements
-const calendar = query('#calendar');
 const todayContainer = query('.calendar_dates');
-const prevArrow = query('.arrow_prev-month');
-const nextArrow = query('.arrow_next-month');
 const monthHeading = query('.calendar_month');
-const viewsBtn = query('.heading_right .btn');
-const viewsDropdown = query('.heading_right .views');
 
 // ==========  FUNCTION SCOPE ========== //
 

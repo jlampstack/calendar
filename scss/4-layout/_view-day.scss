@@ -1,0 +1,7 @@
+/* Container for Today View */
+.calendar_date--today {
+	display: flex;
+	flex-wrap: wrap;
+	height: 100%;
+	border: 1px solid map-get-deep($palette, 'light', '600');
+}

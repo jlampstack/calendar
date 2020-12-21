@@ -8,12 +8,13 @@
 			href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap"
 			rel="stylesheet"
 		/>
-		<link rel="stylesheet" href="./styles.css" />
+		<link rel="stylesheet" href="./main.css" />
+		<!-- <link rel="stylesheet" href="./styles.css" /> -->
 		<title>Calendar</title>
 	</head>
 	<body>
 		<!-- Container -->
-		<div class="container">
+		<div class="app">
 			<!-- Calendar -->
 			<div id="calendar">
 				<!-- Heading -->
@@ -38,9 +39,9 @@
 						<div class="dropdown_views">
 							<!-- Drop Down -->
 							<button class="btn" value="month">
-								Month <span class="arrow_down"></span>
+								Month <span class="arrow-down"></span>
 							</button>
-							<div class="views">
+							<div class="menu">
 								<a href="#">Day</a>
 								<a href="#">Week</a>
 								<a href="#">Month</a>
@@ -49,7 +50,7 @@
 					</div>
 				</div>
 				<!-- Calendar Heading End -->
-				<div class="calendar_dates"></div>
+				<div class="calendar_dates">Loading...</div>
 			</div>
 		</div>
 		<!-- Modal -->
@@ -76,7 +77,7 @@
 			</div>
 		</div>
 
-		<script type="module" src="./script.js"></script>
-		<script type="module" src="./modal.js"></script>
+		<script type="module" src="./main.js"></script>
+		<script type="module" src="./js/modal.js"></script>
 	</body>
 </html>

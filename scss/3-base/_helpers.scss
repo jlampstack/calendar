@@ -1,0 +1,194 @@
+// -----------------------------------------------------------------------------
+// This file contains CSS helper classes.
+// -----------------------------------------------------------------------------
+
+/**
+ * Clear inner floats
+ */
+.clearfix::after {
+  clear: both;
+  content: '';
+  display: table;
+}
+
+/**
+ * Hide text while making it readable for screen readers
+ * 1. Needed in WebKit-based browsers because of an implementation bug;
+ *    See: https://code.google.com/p/chromium/issues/detail?id=457146
+ */
+.hide-text {
+  overflow: hidden;
+  padding: 0; /* 1 */
+  text-indent: 101%;
+  white-space: nowrap;
+}
+
+/**
+ * Hide element while making it readable for screen readers
+ * Shamelessly borrowed from HTML5Boilerplate:
+ * https://github.com/h5bp/html5-boilerplate/blob/master/src/css/main.css#L119-L133
+ */
+.visually-hidden {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: rem(1);
+  margin: -rem(1);
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: rem(1);
+}
+
+/**
+ * Content Container
+ * 1. Make container full-width with a maximum width
+ * 2. Center it in the viewport
+ * 3. Leave some space on the edges, especially valuable on small screens
+ */
+
+.container {
+  display: flex;
+  max-width: 100%; 
+  padding: 0;
+  width: 100%; 
+}
+
+////////////////
+// - SPACING
+///////////////
+
+/**
+ * Padding & Margin
+ */
+
+@each $space, $size in $spacing {
+  // padding [trbl - all]
+  .p-#{$space} {
+    padding: #{$size};
+  }
+  // padding [top]
+  .pt-#{$space} {
+    padding: #{$size} 0 0 0;
+  }
+  // padding [right]
+  .pr-#{$space} {
+    padding: 0 #{$size} 0 0;
+  }
+  // padding [bottom]
+  .pb-#{$space} {
+    padding: 0 0 #{$size} 0;
+  }
+  // padding [left]
+  .pl-#{$space} {
+    padding: 0 0 0 #{$size} ;
+  }
+  // padding [X-axis]
+  .px-#{$space} {
+    padding: 0 #{$size};
+  }
+  // padding [Y-axis]
+  .py-#{$space} {
+    padding: #{$size} 0;
+  }
+  // margin [trbl - all]
+  .m-#{$space} {
+    margin: #{$size};
+  }
+  // margin [top]
+  .mt-#{$space} {
+    margin: #{$size} 0 0 0;
+  }
+  // margin [right]
+  .mr-#{$space} {
+    margin: 0 #{$size} 0 0;
+  }
+  // margin [bottom]
+  .mb-#{$space} {
+    margin: 0 0 #{$size} 0;
+  }
+  // margin [left]
+  .ml-#{$space} {
+    margin: 0 0 0 #{$size} ;
+  }
+  // margin [X-axis]
+  .mx-#{$space} {
+    margin: 0 #{$size};
+  }
+  // margin [Y-axis]
+  .my-#{$space} {
+    margin: #{$size} 0;
+  }
+}
+
+/////////////////
+// - DISPLAYS
+////////////////
+
+// Displays an element as an inline element (like <span>). Any height and width properties will have no effect
+
+.block {
+  display: block;
+}
+
+// 	Displays an element as a block element (like <p>). It starts on a new line, and takes up the whole width
+
+.inline {
+  display: inline;
+}
+
+// Displays an element as an inline-level block container. The element itself is formatted as an inline element, but you can apply height and width values
+
+.inline-block {
+  display: inline-block;
+}
+
+
+////////////////
+// - FLEXBOX 
+///////////////
+
+// flex-container
+
+.flex {
+  display: flex;
+}
+
+// flex-direction
+
+@each $css, $value in $flex-direction {
+  .#{$css} {
+    flex-direction: #{$value};
+  }
+}
+
+// justify-content
+
+@each $css, $value in $justify-content {
+  .#{$css} {
+    justify-content: #{$value};
+  }
+}
+
+// align-items
+
+@each $css, $value in $align-items {
+  .#{$css} {
+    align-items: #{$value};
+  }
+}
+
+// align-content
+
+@each $css, $value in $align-content {
+  .#{$css} {
+    align-content: #{$value};
+  }
+}
+
+// align-self
+
+@each $css, $value in $align-self {
+  .#{$css} {
+    align-self: #{$value};
+  }
+}

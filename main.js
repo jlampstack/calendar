@@ -4,14 +4,14 @@ import {
 	daysShort,
 	getOffsetStart,
 	getLastDateOfMonth,
-} from './date.js';
+} from './js/date.js';
 
-import { renderDay } from './renderDay.js';
-import { renderMonth } from './renderMonth.js';
-import { renderWeek } from './renderWeek.js';
+import { renderDay } from './js/renderDay.js';
+import { renderMonth } from './js/renderMonth.js';
+import { renderWeek } from './js/renderWeek.js';
 
-import { renderCalendarView } from './renderCalendarViewButton.js';
-import { modalPopup } from './modal.js';
+import { renderCalendarView } from './js/renderCalendarViewButton.js';
+import { modalPopup } from './js/modal.js';
 
 // ==========  GLOBAL ELEMENTS ========== //
 
@@ -25,13 +25,12 @@ const datesContainer = query('.calendar_dates');
 const prevArrow = query('.arrow_prev-month');
 const nextArrow = query('.arrow_next-month');
 const monthHeading = query('.calendar_month');
-const viewsBtn = query('.heading_right .btn');
-const viewsDropdown = query('.heading_right .views');
-const viewsLinkCollection = queryAll('.heading_right .views a');
+const viewsBtn = query('.dropdown_views .btn');
+const viewsDropdownMenu = query('.dropdown_views .menu');
 
 // Init calendar with month view
-renderDay();
-// renderMonth();
+// renderDay();
+renderMonth();
 
 // ==========  FUNCTIONS ========== //
 
@@ -77,16 +76,16 @@ nextArrow.addEventListener('click', e => {
 
 // Views Button
 viewsBtn.onclick = e => {
-	viewsDropdown.style.display = 'flex';
+	viewsDropdownMenu.style.display = 'flex';
 };
 
 // Views Drop Down Menu
-viewsDropdown.onclick = e => renderCalendarView(e);
+viewsDropdownMenu.onclick = e => renderCalendarView(e);
 
 // Window
 window.onclick = e => {
 	if (!e.target.classList.contains('btn')) {
-		viewsDropdown.style.display = 'none';
+		viewsDropdownMenu.style.display = 'none';
 	}
 };
 
