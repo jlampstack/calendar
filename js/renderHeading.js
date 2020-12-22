@@ -6,19 +6,19 @@ import { renderCalendarView } from './renderCalendarViewButton.js';
 const query = document.querySelector.bind(document);
 const queryAll = document.querySelectorAll.bind(document);
 
-const monthHeading = query('.calendar_month');
+const calendarTitle = query('.calendar_title');
 const viewsButton = query('.dropdown_views .btn');
 
 export function renderHeading() {
 	if (viewsButton.getAttribute('value') == 'day') {
-		monthHeading.innerText = `${
+		calendarTitle.innerText = `${
 			months[d.getMonth()]
 		} ${d.getDate()}, ${d.getFullYear()}`;
 	}
 	if (viewsButton.getAttribute('value') == 'week') {
-		monthHeading.innerText = `${months[d.getMonth()]} ${d.getFullYear()}`;
+		calendarTitle.innerText = `${months[d.getMonth()]} ${d.getFullYear()}`;
 	}
 	if (viewsButton.getAttribute('value') == 'month') {
-		monthHeading.innerText = `${months[d.getMonth()]} ${d.getFullYear()}`;
+		calendarTitle.innerText = `${months[d.getMonth()]} ${d.getFullYear()}`;
 	}
 }

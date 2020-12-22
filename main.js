@@ -1,10 +1,4 @@
-import {
-	d,
-	months,
-	daysShort,
-	getOffsetStart,
-	getLastDateOfMonth,
-} from './js/date.js';
+import { d } from './js/date.js';
 
 import { renderDay } from './js/renderDay.js';
 import { renderMonth } from './js/renderMonth.js';
@@ -24,7 +18,7 @@ const calendar = query('#calendar');
 const datesContainer = query('.calendar_dates');
 const prevArrow = query('.arrow_prev-month');
 const nextArrow = query('.arrow_next-month');
-const monthHeading = query('.calendar_month');
+const calendarTitle = query('.calendar_title');
 const viewsButton = query('.dropdown_views .btn');
 const viewsDropdownMenu = query('.dropdown_views .menu');
 
@@ -35,16 +29,10 @@ renderMonth();
 
 // ==========  FUNCTIONS ========== //
 
-// Scroll to previous month
+// SCROLL PREVIOUS
 function prevMonthScroll() {
 	let viewsButtonValue = viewsButton.getAttribute('value');
 	switch (viewsButtonValue) {
-		case 'week':
-			let jay = d;
-			console.log(jay);
-			d.setDate(jay);
-			renderWeek('r');
-			break;
 		case 'month':
 			d.setMonth(d.getMonth() - 1);
 			renderMonth('r');
@@ -52,7 +40,7 @@ function prevMonthScroll() {
 	}
 }
 
-// Scroll to next month
+// SCROLL NEXT
 function nextMonthScroll() {
 	let viewsButtonValue = viewsButton.getAttribute('value');
 	switch (viewsButtonValue) {
@@ -67,11 +55,19 @@ function nextMonthScroll() {
 
 // Previous Month Arrow
 prevArrow.addEventListener('click', e => {
+	calendarTitle.setAttribute(
+		'data-date',
+		new Date(d.getFullYear(), d.getMonth() - 1),
+	);
 	prevMonthScroll();
 });
 
 // Next Month Arrow
 nextArrow.addEventListener('click', e => {
+	calendarTitle.setAttribute(
+		'data-date',
+		new Date(d.getFullYear(), d.getMonth() + 1),
+	);
 	nextMonthScroll();
 });
 
@@ -96,8 +92,16 @@ datesContainer.addEventListener(
 	e => {
 		if (viewsButton.getAttribute('value') == 'month') {
 			if (e.deltaY < 0) {
+				calendarTitle.setAttribute(
+					'data-date',
+					new Date(d.getFullYear(), d.getMonth() - 1),
+				);
 				prevMonthScroll();
 			} else if (e.deltaY > 0) {
+				calendarTitle.setAttribute(
+					'data-date',
+					new Date(d.getFullYear(), d.getMonth() + 1),
+				);
 				nextMonthScroll();
 			}
 		}
@@ -109,9 +113,17 @@ datesContainer.addEventListener(
 document.addEventListener('keydown', e => {
 	let char = e.which || e.keyCode;
 	if (char === 37 || char === 38) {
+		calendarTitle.setAttribute(
+			'data-date',
+			new Date(d.getFullYear(), d.getMonth() - 1),
+		);
 		prevMonthScroll();
 	}
 	if (char === 39 || char === 40) {
+		calendarTitle.setAttribute(
+			'data-date',
+			new Date(d.getFullYear(), d.getMonth() + 1),
+		);
 		nextMonthScroll();
 	}
 });
@@ -156,10 +168,18 @@ function handleTouchMove(evt) {
 		/*most significant*/
 		if (xDiff > 0) {
 			/* Render next month */
+			calendarTitle.setAttribute(
+				'data-date',
+				new Date(d.getFullYear(), d.getMonth() + 1),
+			);
 			d.setMonth(d.getMonth() + 1);
 			renderCalendar('l');
 		} else {
 			/* Render previous month */
+			calendarTitle.setAttribute(
+				'data-date',
+				new Date(d.getFullYear(), d.getMonth() - 1),
+			);
 			d.setMonth(d.getMonth() - 1);
 			renderCalendar('l');
 		}

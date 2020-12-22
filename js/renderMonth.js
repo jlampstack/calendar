@@ -9,6 +9,7 @@ const query = document.querySelector.bind(document);
 const queryAll = document.querySelectorAll.bind(document);
 
 // Elements
+const calendarTitle = query('.calendar_title');
 const datesContainer = query('.calendar_dates');
 
 // Renders Month
@@ -47,12 +48,16 @@ export function renderMonth(direction = null) {
 			d.getMonth(),
 			1 - getOffsetStart() + i,
 		);
+
+		// SET data-date attribute for each date container
+		dateCollection[i].setAttribute('data-date', date);
+
 		// CURRENT MONTH: Add date <div>
 		if (date.getMonth() === d.getMonth()) {
 			// All dates
 			dateCollection[
 				i
-			].innerHTML = `<div class="date_num" data-date="date">${date.getDate()}</div>`;
+			].innerHTML = `<div class="date_num">${date.getDate()}</div>`;
 			// TODAY: date only for today
 			let dateToday = new Date();
 			// Adjust index -1 to get correct date
@@ -64,10 +69,10 @@ export function renderMonth(direction = null) {
 				const dateNumCollection = queryAll('.date_num');
 				// Add focus to "today"
 				dateNumCollection[i].classList.add('today');
+				// data-date attr is the only .date el that should also have current time
+				dateCollection[i].setAttribute('data-date', dateToday);
 			}
 		} else {
-			// DATE BLUR: all dates not current month, either prev or next
-			let dateBlur = new Date(d.getFullYear(), d.getMonth(), i - 1);
 			// PREV & NEXT MONTH: add class for special styling to dates not of current month
 			dateCollection[
 				i
@@ -76,18 +81,13 @@ export function renderMonth(direction = null) {
 		}
 	}
 
-	// For each date <div>, square date container
+	// FOR EACH DATE DIV: date container
 	dateCollection.forEach((date, index) => {
-		// ADD: data-date attr to be able to access it
-		date.setAttribute(
-			'data-date',
-			new Date(d.getFullYear(), d.getMonth(), index - 1),
-		);
-		// Create Heading for "Day Of Week" & give a value to its class attr
+		// Prepend Heading for "Day Of Week" only to first row  e.g.) SUN - SAT
 		const dow = document.createElement('SPAN');
 		dow.classList.add('date_dow');
 		dow.innerHTML = `${daysShort[index]}`;
-		// Add date heading Only to first row
+		// First row
 		if (index < 7) {
 			date.prepend(dow);
 		}
