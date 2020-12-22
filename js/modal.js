@@ -5,7 +5,7 @@ const query = document.querySelector.bind(document);
 const queryAll = document.querySelectorAll.bind(document);
 
 export function modalPopup(event) {
-	console.log('in the modal', event.target);
+	console.log('modal', event.target);
 	// Get the modal
 	const modal = query('#modal');
 	const modalContent = query('.modal_content');
@@ -17,7 +17,7 @@ export function modalPopup(event) {
 	event.target.onclick = function (e) {
 		let children = e.target.childNodes;
 
-		if (el.classList.contains('date_num')) {
+		if (event.target.classList.contains('date_num')) {
 			// Get date string parse it to time string
 			let dateString = Date.parse(el.getAttribute('data-date'));
 			// Convert string to date object

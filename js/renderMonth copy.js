@@ -4,6 +4,8 @@ import { renderHeading } from './renderHeading.js';
 
 import { modalPopup } from './modal.js';
 
+// ==========  GLOBAL ELEMENTS ========== //
+
 // Query Alias
 const query = document.querySelector.bind(document);
 const queryAll = document.querySelectorAll.bind(document);
@@ -11,17 +13,20 @@ const queryAll = document.querySelectorAll.bind(document);
 // Elements
 const datesContainer = query('.calendar_dates');
 
+// ==========  FUNCTION SCOPE ========== //
+
 // Renders Month
 export function renderMonth(direction = null) {
 	// Heading
 	renderHeading();
-	// Number of rows month should have
+	// Returns 5 or 6 rows depending on month
 	const numRows = getOffsetStart() + getLastDateOfMonth() > 35 ? 6 : 5;
 	const numDatesTotal = numRows * 7;
 
+	// Important: resets html evertime an event is fired
 	datesContainer.innerHTML = ``;
 
-	// ADD ROWS: appropriate num of rows, 5 or 6
+	// Add appropriate num of rows (5 or 6)
 	for (let row = 0; row < numRows; row++) {
 		datesContainer.innerHTML += `<div class="row"></row>`;
 	}
@@ -47,12 +52,12 @@ export function renderMonth(direction = null) {
 			d.getMonth(),
 			1 - getOffsetStart() + i,
 		);
-		// CURRENT MONTH: Add date <div>
+		// CURRENT MONTH: add the base date class for basic styling
 		if (date.getMonth() === d.getMonth()) {
 			// All dates
 			dateCollection[
 				i
-			].innerHTML = `<div class="date_num" data-date="date">${date.getDate()}</div>`;
+			].innerHTML = `<div class="date_num">${date.getDate()}</div>`;
 			// TODAY: date only for today
 			let dateToday = new Date();
 			// Adjust index -1 to get correct date
@@ -62,32 +67,28 @@ export function renderMonth(direction = null) {
 				dateToday.getFullYear() == date.getFullYear()
 			) {
 				const dateNumCollection = queryAll('.date_num');
-				// Add focus to "today"
 				dateNumCollection[i].classList.add('today');
+				// Add date-date attribute to .date div and store Date as it's value
+				dateCollection[i].setAttribute('date-date', dateToday);
 			}
 		} else {
 			// DATE BLUR: all dates not current month, either prev or next
-			let dateBlur = new Date(d.getFullYear(), d.getMonth(), i - 1);
+			let dateBlur = new Date();
 			// PREV & NEXT MONTH: add class for special styling to dates not of current month
 			dateCollection[
 				i
 			].innerHTML = `<div class="date_num date_num--blur">${date.getDate()}</div>`;
 			dateCollection[i].classList.add('date--blur');
+			// Add date-date attribute to .date div and store Date as it's value
+			dateCollection[i].setAttribute('date-date', dateBlur);
 		}
 	}
 
-	// For each date <div>, square date container
+	// ADD day of week as column headers (Sun - Sat)
 	dateCollection.forEach((date, index) => {
-		// ADD: data-date attr to be able to access it
-		date.setAttribute(
-			'data-date',
-			new Date(d.getFullYear(), d.getMonth(), index - 1),
-		);
-		// Create Heading for "Day Of Week" & give a value to its class attr
 		const dow = document.createElement('SPAN');
 		dow.classList.add('date_dow');
 		dow.innerHTML = `${daysShort[index]}`;
-		// Add date heading Only to first row
 		if (index < 7) {
 			date.prepend(dow);
 		}
