@@ -95,9 +95,11 @@ export function renderMonth(direction = null) {
 			row.classList.add(slideDirection);
 		});
 	}
-
-	// ==========  MODAL TASK ========== //
-
-	// Task Modal Pop Up
-	modalPopup();
 }
+
+datesContainer.addEventListener('click', event => {
+	if (event.target.classList.contains('date')) {
+		// Task Modal Pop Up
+		modalPopup(event);
+	}
+});

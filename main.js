@@ -30,8 +30,8 @@ const viewsDropdownMenu = query('.dropdown_views .menu');
 
 // Init calendar with month view
 // renderDay();
-renderWeek();
-// renderMonth();
+// renderWeek();
+renderMonth();
 
 // ==========  FUNCTIONS ========== //
 
