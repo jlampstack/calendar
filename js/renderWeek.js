@@ -1,10 +1,7 @@
-import {
-	d,
-	months,
-	daysShort,
-	getOffsetStart,
-	getLastDateOfMonth,
-} from './date.js';
+import { d, daysShort } from './date.js';
+
+import { renderHeading } from './renderHeading.js';
+import { renderTimeSlots } from './renderTimeSlots.js';
 
 import { modalPopup } from './modal.js';
 
@@ -16,7 +13,6 @@ const queryAll = document.querySelectorAll.bind(document);
 
 // Elements
 const datesContainer = query('.calendar_dates');
-const monthHeading = query('.calendar_month');
 
 // ==========  FUNCTION SCOPE ========== //
 
@@ -26,9 +22,8 @@ const today = new Date(d.getFullYear(), d.getMonth(), d.getDate());
 
 // Renders Month
 export function renderWeek(direction = null) {
-	// Month heading
-	monthHeading.innerText = `${months[d.getMonth()]} ${d.getFullYear()}`;
-
+	// Heading
+	renderHeading();
 	// Markup inside <div> .calendar_dates
 	datesContainer.innerHTML = `<div class="row">`;
 
@@ -39,16 +34,22 @@ export function renderWeek(direction = null) {
 	// ADD OFFSET DATES: Dates before day of week index
 	for (let i = today.getDate() - today.getDay(); i < today.getDate(); i++) {
 		let date = new Date(d.getDate(), d.getMonth(), i);
-		row.innerHTML += `<div class="date"><div class="date_num" data-date="${date}">${date.getDate()}</div></div>`;
+		row.innerHTML += `<div class="date" data-date="${new Date(
+			d.getFullYear(),
+			d.getMonth(),
+			d.getDate() - 1,
+		)}"><div class="date_num">${date.getDate()}</div></div>`;
 	}
 
 	// ADD REMAINING DATES: Today & Remaining dates of the week
 	for (let j = today.getDate(); j < 7 - today.getDay() + today.getDate(); j++) {
 		let date = new Date(d.getFullYear(), d.getMonth(), j);
 		if (date.getDate() === today.getDate()) {
-			row.innerHTML += `<div class="date"><div class="date_num today" data-date="${date}">${date.getDate()}</div></div>`;
+			row.innerHTML += `<div class="date" data-date="${today}"><div class="date_num today">${date.getDate()}</div></div>`;
 		} else {
-			row.innerHTML += `<div class="date"><div class="date_num" data-date="${date}">${date.getDate()}</div></div>`;
+			row.innerHTML += `<div class="date" data-date="${date}">
+							<div class="date_num">${date.getDate()}</div>
+					</div>`;
 		}
 	}
 
@@ -58,14 +59,12 @@ export function renderWeek(direction = null) {
 	const dateCollection = queryAll('.date');
 
 	// ADD day of week as column headers (Sun - Sat)
-	// dateCollection.forEach((date, index) => {
-	// 	const dow = document.createElement('SPAN');
-	// 	dow.classList.add('date_dow');
-	// 	dow.innerHTML = `${daysShort[index]}`;
-	// 	if (index < 7) {
-	// 		date.prepend(dow);
-	// 	}
-	// });
+	dateCollection.forEach((date, index) => {
+		const dow = document.createElement('SPAN');
+		dow.classList.add('date_dow');
+		dow.innerHTML = `${daysShort[index]}`;
+		date.prepend(dow);
+	});
 
 	// ANIMATE: calendar scroll direction ('left' or 'right')
 	if (direction !== null) {
@@ -73,8 +72,12 @@ export function renderWeek(direction = null) {
 		row.classList.add(slideDirection);
 	}
 
-	// ==========  MODAL TASK ========== //
+	// ==========  MODAL ========== //
 
-	// Task Modal Pop Up
-	modalPopup();
+	datesContainer.addEventListener('click', event => {
+		if (event.target.classList.contains('date')) {
+			// Task Modal Pop Up
+			modalPopup(event);
+		}
+	});
 }

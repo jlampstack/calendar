@@ -19,7 +19,7 @@ const calendar = query('#calendar');
 const datesContainer = query('.calendar_dates');
 const prevArrow = query('.arrow_prev-month');
 const nextArrow = query('.arrow_next-month');
-const monthHeading = query('.calendar_month');
+const calendarTitle = query('.calendar_title');
 const viewsBtn = query('.heading_right .btn');
 const viewsDropdown = query('.heading_right .views');
 
@@ -32,7 +32,7 @@ const today = new Date(d.getFullYear(), d.getMonth(), d.getDate());
 // Renders Month
 export function renderWeek(direction = null) {
 	// Month heading
-	monthHeading.innerText = `${months[d.getMonth()]} ${d.getFullYear()}`;
+	calendarTitle.innerText = `${months[d.getMonth()]} ${d.getFullYear()}`;
 
 	// Markup inside <div> .calendar_dates
 	datesContainer.innerHTML = `<div class="row">`;

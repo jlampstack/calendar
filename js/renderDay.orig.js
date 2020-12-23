@@ -47,11 +47,7 @@ export function renderDay(direction = null) {
 		}
 		// Listen for click to target hour slot
 		timeslot.addEventListener('click', e => {
-			let parent = e.target.parentElement;
-			// Target Index = Target Hour, Use index to get the hour
-			let targetIndex = [...parent.children].indexOf(e.target);
-			// let convertIndex = targetIndex > 13 ? targetIndex - 12 : targetIndex;
-			e.target.setAttribute('data-timestamp', '12am');
+			console.log(e.target);
 			modalPopup();
 		});
 	});

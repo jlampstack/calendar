@@ -1766,7 +1766,7 @@ h1 {
 
 /* ========== HEADING LEFT SECTION ========== */
 /* Title Heading */
-.calendar_month {
+.calendar_title {
   margin-left: 1.5rem;
   font-size: 22px;
   color: #4f5559;
@@ -2032,9 +2032,9 @@ h1 {
 /* Modal Content, Container */
 .modal_content {
   position: relative;
-  display: flex;
+  display: block;
   flex-direction: column;
-  width: 375px;
+  width: 400px;
   /* height: 500px; */
   min-height: 50vh;
   background: white;
@@ -2179,6 +2179,7 @@ h1 {
 .scroller {
   overflow: scroll;
   flex-grow: 1;
+  width: 100%;
   height: 1px;
 }
 
