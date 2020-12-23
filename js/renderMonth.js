@@ -24,7 +24,7 @@ export function renderMonth(direction = null) {
 
 	// ADD ROWS: appropriate num of rows, 5 or 6
 	for (let row = 0; row < numRows; row++) {
-		datesContainer.innerHTML += `<div class="row"></row>`;
+		datesContainer.innerHTML += `<div class="row month"></row>`;
 	}
 
 	// Define after rows are added to the dom

@@ -337,7 +337,7 @@ body {
 }
 
 /* Individual Time Slot */
-.time-slot {
+.timeslot {
 	display: flex;
 	align-items: center;
 	width: 100%;
@@ -347,7 +347,7 @@ body {
 	color: var(--dark-200);
 }
 
-.time-slot span {
+.timeslot span {
 	margin-left: 0.75rem;
 }
 

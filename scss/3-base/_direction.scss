@@ -1,0 +1,45 @@
+// -----------------------------------------------------------------------------
+// This file contains typography styles
+// -----------------------------------------------------------------------------
+
+/**
+ * Basic typography style for copy text
+ */
+body {
+  font: normal 125% / 1.4 map-get-deep($palette, 'dark', '500');
+}
+
+
+
+p {
+  font: normal 125% / 1.4 map-get-deep($palette, 'dark', '500');
+}
+
+/////////////////
+// - HEADINGS
+////////////////
+
+// h1, h2, h3, h4, h5, h6 {
+//   color: green;
+// }
+
+@each $heading, $font-size in $headings {
+  #{$heading} {
+    font-size: #{$font-size};
+    color: map-get-deep($palette, 'dark', '500');
+  }
+}
+
+///////////////////////////
+// - HEADINGS (h1 - h6)
+//////////////////////////
+
+h1 {
+  font-size: map-get($headings, 'h1');
+}
+
+
+
+///////////////////////////
+// - DISPLAYS (d1 - d6)
+//////////////////////////

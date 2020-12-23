@@ -1,7 +1,10 @@
 import { d, daysShort } from './date.js';
 
 import { renderHeading } from './renderHeading.js';
-import { renderTimeSlots } from './renderTimeSlots.js';
+import {
+	renderTimeSlotBlocks,
+	renderTimeSlotsLegend,
+} from './renderTimeSlots.js';
 
 import { modalPopup } from './modal.js';
 
@@ -12,51 +15,41 @@ const query = document.querySelector.bind(document);
 const queryAll = document.querySelectorAll.bind(document);
 
 // Elements
-const todayContainer = query('.calendar_dates');
+const datesContainer = query('.calendar_dates');
 
 // ==========  FUNCTION SCOPE ========== //
 
-// Renders Current Date, Today
+// Find offset to push date "Today" under correct day of week
+// ADD 7 dates of the week
+const today = new Date(d.getFullYear(), d.getMonth(), d.getDate());
+
+// Renders Month
 export function renderDay(direction = null) {
 	// Heading
 	renderHeading();
-	// Today's date
-	const today = new Date(d.getFullYear(), d.getMonth(), d.getDate());
+	// Markup inside <div> .calendar_dates
+	datesContainer.innerHTML = `<div class="row day">`;
 
-	let htmlRow = '<div class="row" style="flex-direction:column;">';
-	htmlRow += `<div class="date_today"><div class="date-day date_dow-today">${
-		daysShort[today.getDay()]
-	}<div class="date_num today" data-date="${today}">${today.getDate()}</div></div>`;
-	htmlRow += '</div>';
-	htmlRow += renderTimeSlots();
+	const row = query('.row');
 
-	// Markup inside .calendar_dates
-	todayContainer.innerHTML = htmlRow;
+	row.innerHTML += `
+		<div class="date" data-date="${today}">
+		<div class="date_num today">${today.getDate()}</div>
+		${renderTimeSlotBlocks()}
+	</div>`;
 
-	// Render Time Slots
-
-	// Query after rendered to dom
-	let timeSlotCollection = queryAll('.time-slot');
-
-	// Listen for click on targeted timeslot
-	timeSlotCollection.forEach((timeslot, index) => {
-		// Add focus to Current Hour
-		if (index === d.getHours()) {
-			// console.log(index, timeslot);
-			timeslot.style.borderBottom = '1px solid red';
-		}
-		// Listen for click to target hour slot
-		timeslot.addEventListener('click', e => {
-			let parent = e.target.parentElement;
-			// Target Index = Target Hour, Use index to get the hour
-			let targetIndex = [...parent.children].indexOf(e.target);
-			// let convertIndex = targetIndex > 13 ? targetIndex - 12 : targetIndex;
-			e.target.setAttribute('data-timestamp', '12am');
-			modalPopup();
-		});
-	});
+	// Close div .row
+	datesContainer.innerHTML += `</div>`;
 
 	const dateCollection = queryAll('.date');
+
+	// ADD day of week as column headers (Sun - Sat)
+	dateCollection.forEach((date, index) => {
+		const dow = document.createElement('SPAN');
+		dow.classList.add('date_dow');
+		dow.innerHTML = `${daysShort[index]}`;
+		date.prepend(dow);
+	});
 
 	// ANIMATE: calendar scroll direction ('left' or 'right')
 	if (direction !== null) {
@@ -64,8 +57,12 @@ export function renderDay(direction = null) {
 		row.classList.add(slideDirection);
 	}
 
-	// ==========  MODAL TASK ========== //
+	// ==========  MODAL ========== //
 
-	// Task Modal Pop Up
-	modalPopup();
+	datesContainer.addEventListener('click', event => {
+		if (event.target.classList.contains('date')) {
+			// Task Modal Pop Up
+			modalPopup(event);
+		}
+	});
 }

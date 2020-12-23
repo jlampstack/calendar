@@ -1,7 +1,7 @@
 import { d, daysShort } from './date.js';
 
 import { renderHeading } from './renderHeading.js';
-import { renderTimeSlots } from './renderTimeSlots.js';
+import { renderTimeSlotBlocks } from './renderTimeSlots.js';
 
 import { modalPopup } from './modal.js';
 
@@ -25,7 +25,7 @@ export function renderWeek(direction = null) {
 	// Heading
 	renderHeading();
 	// Markup inside <div> .calendar_dates
-	datesContainer.innerHTML = `<div class="row">`;
+	datesContainer.innerHTML = `<div class="row week">`;
 
 	const row = query('.row');
 

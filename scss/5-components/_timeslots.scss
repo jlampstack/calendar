@@ -2,14 +2,14 @@
 
 /* Container for all time slots */
 .scroller {
-	overflow: scroll;
+	overflow-y: scroll;
 	flex-grow: 1;
 	width: 100%;
-	height: 1px;
+	height: 100px;
 }
 
 /* Individual Time Slot */
-.time-slot {
+.timeslot {
 	display: flex;
 	align-items: center;
 	width: 100%;
@@ -19,7 +19,7 @@
 	color: map-get-deep($palette, 'dark', '200');
 }
 
-.time-slot span {
+.timeslot span {
 	width: 2.625rem;
 	font-size: 10px;
 	text-align: right;

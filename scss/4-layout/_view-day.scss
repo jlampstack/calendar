@@ -1,7 +1,24 @@
-/* Container for Today View */
-.calendar_date--today {
-	display: flex;
-	flex-wrap: wrap;
-	height: 100%;
-	border: 1px solid map-get-deep($palette, 'light', '600');
+// Main row container for day view
+.row.day  {
+	width: 100%;
+}
+
+// Row for the date container in the day view
+.row.day .date {
+	align-items: flex-start;
+	width: 100%;
+}
+
+// Number of Date for "Today" e.g.) 1 - 31
+.row.day .date_num {
+	margin-left: 10px;
+	font-size: 25px;
+	font-weight: 400;
+	padding: 24px;
+}
+
+// Span Day of Week for Date e.g.) SUN - SAT
+.row.day .date_dow {
+	font-size: 12px;
+	margin-left: 24px;
 }
