@@ -7,8 +7,6 @@ import { renderWeek } from './js/renderWeek.js';
 import { renderCalendarView } from './js/renderCalendarViewButton.js';
 import { modalPopup } from './js/modal.js';
 
-// ==========  GLOBAL ELEMENTS ========== //
-
 // Query Alias
 const query = document.querySelector.bind(document);
 const queryAll = document.querySelectorAll.bind(document);

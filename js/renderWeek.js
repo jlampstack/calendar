@@ -1,4 +1,4 @@
-import { d } from './date.js';
+import { d, daysShort } from './date.js';
 
 import { renderHeading } from './renderHeading.js';
 import { renderTimeSlots } from './renderTimeSlots.js';
@@ -34,17 +34,17 @@ export function renderWeek(direction = null) {
 	// ADD OFFSET DATES: Dates before day of week index
 	for (let i = today.getDate() - today.getDay(); i < today.getDate(); i++) {
 		let date = new Date(d.getDate(), d.getMonth(), i);
-		row.innerHTML += `<div class="date"><div class="date_num" data-date="${date}">${date.getDate()}</div></div>`;
+		row.innerHTML += `<div class="date" data-date="${date}"><div class="date_num">${date.getDate()}</div></div>`;
 	}
 
 	// ADD REMAINING DATES: Today & Remaining dates of the week
 	for (let j = today.getDate(); j < 7 - today.getDay() + today.getDate(); j++) {
 		let date = new Date(d.getFullYear(), d.getMonth(), j);
 		if (date.getDate() === today.getDate()) {
-			row.innerHTML += `<div class="date"><div class="date_num today" data-date="${date}">${date.getDate()}</div></div>`;
+			row.innerHTML += `<div class="date" data-date="${new Date()}"><div class="date_num today">${date.getDate()}</div></div>`;
 		} else {
-			row.innerHTML += `<div class="date">
-							<div class="date_num" data-date="${date}">${date.getDate()}</div>
+			row.innerHTML += `<div class="date" data-date="${date}">
+							<div class="date_num">${date.getDate()}</div>
 							
 					</div>`;
 		}
@@ -56,14 +56,13 @@ export function renderWeek(direction = null) {
 	const dateCollection = queryAll('.date');
 
 	// ADD day of week as column headers (Sun - Sat)
-	// dateCollection.forEach((date, index) => {
-	// 	const dow = document.createElement('SPAN');
-	// 	dow.classList.add('date_dow');
-	// 	dow.innerHTML = `${daysShort[index]}`;
-	// 	if (index < 7) {
-	// 		date.prepend(dow);
-	// 	}
-	// });
+	dateCollection.forEach((date, index) => {
+		const dow = document.createElement('SPAN');
+		dow.classList.add('date_dow');
+		dow.innerHTML = `${daysShort[index]}`;
+		date.prepend(dow);
+		console.log(date);
+	});
 
 	// ANIMATE: calendar scroll direction ('left' or 'right')
 	if (direction !== null) {
