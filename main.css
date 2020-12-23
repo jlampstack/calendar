@@ -2032,9 +2032,9 @@ h1 {
 /* Modal Content, Container */
 .modal_content {
   position: relative;
-  display: flex;
+  display: block;
   flex-direction: column;
-  width: 375px;
+  width: 400px;
   /* height: 500px; */
   min-height: 50vh;
   background: white;

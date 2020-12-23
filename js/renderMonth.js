@@ -102,6 +102,8 @@ export function renderMonth(direction = null) {
 	}
 }
 
+// ==========  MODAL ========== //
+
 datesContainer.addEventListener('click', event => {
 	if (event.target.classList.contains('date')) {
 		// Task Modal Pop Up

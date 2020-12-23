@@ -49,15 +49,18 @@ export function modalPopup(event) {
 
 		query('.modal_date-text').innerHTML = `${modalDate}`;
 
-		// XY Coordinates of the "clicked" target date element
-		const dateRect = targetElement.getBoundingClientRect();
-		const dateTop = Math.floor(dateRect.top); /* y */
-		const dateLeft = Math.floor(dateRect.left); /* x */
-		const dateWidth = Math.floor(dateRect.width);
-		const dateHeight = Math.floor(dateRect.height);
-		const dateBottom = Math.floor(dateTop + dateHeight);
-		const dateRight = Math.floor(dateLeft + dateWidth);
+		// TARGET DATE: Coordinates
+		const targetDateRect = targetElement.getBoundingClientRect();
+		const targetDateTop = Math.floor(targetDateRect.top); /* y */
+		const targetDateLeft = Math.floor(targetDateRect.left); /* x */
+		const targetDateWidth = Math.floor(targetDateRect.width);
+		const targetDateHeight = Math.floor(targetDateRect.height);
+		const targetDateBottom = Math.floor(targetDateTop + targetDateHeight);
+		const targetDateRight = Math.floor(targetDateLeft + targetDateWidth);
 
+		console.log(targetDateDayIndex, query('.modal_content'));
+
+		modal.style.display = 'block';
 		// IF day index is 0 or 1 (Sun - Mon), modal should display to right
 		if (
 			targetDateDayIndex === 0 ||
@@ -66,13 +69,15 @@ export function modalPopup(event) {
 		) {
 			modal.style.display = 'block';
 			modalContent.style.top = `10vh`;
-			modalContent.style.left = `${dateRight + 16}px`;
+			modalContent.style.left = `${targetDateRight + 0}px`;
+		} else if (targetDateDayIndex === 3) {
+			modal.style.display = 'block';
+			modalContent.style.top = `10vh`;
+			modalContent.style.left = `${targetDateLeft - 200}px`;
 		} else {
 			modal.style.display = 'block';
 			modalContent.style.top = `10vh`;
-			modalContent.style.left = `${
-				dateLeft - 375 - 16
-			}px`; /* 375 modal width */
+			modalContent.style.left = `${targetDateLeft - 400}px`;
 		}
 	}
 
@@ -102,33 +107,4 @@ export function modalPopup(event) {
 			modal.style.display = 'none';
 		}
 	};
-}
-
-/**
- * GET Coordinates of an element
- *
- * @param   {object}  element - query selector object e.g.) query('#calendar')
- * @return  {[type]}
- */
-export function getCoordsXY(element) {
-	// Init var to use dynamically below
-	let elementRect = element;
-	/* Top & Left */
-	let elementTop = elementRect + 'Top';
-	let elementLeft = elementRect + 'Left';
-	/* Width & Height needed to calc Bottom & Right */
-	let elementWidth = elementRect + 'Width';
-	let elementHeight = elementRect + 'Height';
-	/* Bottom & Left */
-	let elementBottom = elementTop + elementHeight;
-	let elementRight = elementLeft + elementWidth;
-
-	// GET coords
-	elementRect = element.getBoundingClientRect();
-	elementTop = Math.floor(elementRect.top); /* y */
-	elementLeft = Math.floor(elementRect.left); /* x */
-	elementWidth = Math.floor(elementRect.width);
-	elementHeight = Math.floor(elementRect.height);
-	elementBottom = Math.floor(elementTop + elementHeight);
-	elementRight = Math.floor(elementLeft + elementWidth);
 }
