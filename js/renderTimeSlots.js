@@ -24,7 +24,7 @@ export function renderTimeSlotsLegend() {
 
 // Loads only the lines for each timeslot block, NOT the legend
 export function renderTimeSlotBlocks() {
-	let htmlTimeSlots = `<div class="scroller">`;
+	let htmlTimeSlots = `<div class="timeslots">`;
 
 	// Add Timeslots
 	for (let i = 0; i < 24; i++) {
@@ -43,3 +43,25 @@ export function renderTimeSlotBlocks() {
 	htmlTimeSlots += `</div>`;
 	return htmlTimeSlots;
 }
+
+// // Loads only the lines for each timeslot block, NOT the legend
+// export function renderTimeSlotBlocks() {
+// 	let htmlTimeSlots = `<div class="scroller">`;
+
+// 	// Add Timeslots
+// 	for (let i = 0; i < 24; i++) {
+// 		if (i < 13) {
+// 			// Midnight
+// 			if (i == 0) {
+// 				htmlTimeSlots += `<div class="timeslot"></div>`;
+// 			} else {
+// 				htmlTimeSlots += `<div class="timeslot"></div>`;
+// 			}
+// 		} else {
+// 			htmlTimeSlots += `<div class="timeslot"></div>`;
+// 		}
+// 	}
+
+// 	htmlTimeSlots += `</div>`;
+// 	return htmlTimeSlots;
+// }

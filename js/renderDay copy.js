@@ -33,7 +33,7 @@ export function renderDay(direction = null) {
 	const row = query('.row');
 
 	row.innerHTML += `
-	<div class="date" data-date="${today}">
+		<div class="date" data-date="${today}">
 		<div class="date_num today">${today.getDate()}</div>
 		${renderTimeSlotBlocks()}
 	</div>`;
@@ -47,7 +47,7 @@ export function renderDay(direction = null) {
 	dateCollection.forEach((date, index) => {
 		const dow = document.createElement('SPAN');
 		dow.classList.add('date_dow');
-		dow.innerHTML = `${daysShort[today.getDay()]}`;
+		dow.innerHTML = `${daysShort[index]}`;
 		date.prepend(dow);
 	});
 
