@@ -1,68 +1,39 @@
 import { d, daysShort } from './date.js';
 
-import { renderHeading } from './renderHeading.js';
-import {
-	renderTimeSlotBlocks,
-	renderTimeSlotsLegend,
-} from './renderTimeSlots.js';
+// ========== RENDER DAY ========== //
 
-import { modalPopup } from './modal.js';
+// Renders date heading (dow & date) for each date e.g.) SUN 21
+export function renderDayHeadings() {
+	// Column for Heading
+	let htmlHeading = `<div class="col heading">
+		<div class="date">
+				<div class="dow">${daysShort[d.getDay()]}</div>
+				<div class="num">${d.getDate()}</div>
+		</div>`;
+	return htmlHeading;
+}
 
-// ==========  GLOBAL ELEMENTS ========== //
-
-// Query Alias
-const query = document.querySelector.bind(document);
-const queryAll = document.querySelectorAll.bind(document);
-
-// Elements
-const datesContainer = query('.calendar_dates');
-
-// ==========  FUNCTION SCOPE ========== //
-
-// Find offset to push date "Today" under correct day of week
-// ADD 7 dates of the week
-const today = new Date(d.getFullYear(), d.getMonth(), d.getDate());
-
-// Renders Month
-export function renderDay(direction = null) {
-	// Heading
-	renderHeading();
-	// Markup inside <div> .calendar_dates
-	datesContainer.innerHTML = `<div class="row day">`;
-
-	const row = query('.row');
-
-	row.innerHTML += `
-		<div class="date" data-date="${today}">
-		<div class="date_num today">${today.getDate()}</div>
-		${renderTimeSlotBlocks()}
-	</div>`;
-
-	// Close div .row
-	datesContainer.innerHTML += `</div>`;
-
-	const dateCollection = queryAll('.date');
-
-	// ADD day of week as column headers (Sun - Sat)
-	dateCollection.forEach((date, index) => {
-		const dow = document.createElement('SPAN');
-		dow.classList.add('date_dow');
-		dow.innerHTML = `${daysShort[index]}`;
-		date.prepend(dow);
-	});
-
-	// ANIMATE: calendar scroll direction ('left' or 'right')
-	if (direction !== null) {
-		const slideDirection = `slide-${direction}`;
-		row.classList.add(slideDirection);
+// Renders Day With 24 Time Blocks, 24 hrs in a day
+export function renderDayTimeslots() {
+	// Column for Day
+	let htmlTimeslots = `<div class="col timeslot">`;
+	// Add Timeslots
+	for (let i = 0; i < 24; i++) {
+		if (i < 13) {
+			// Midnight
+			if (i == 0) {
+				htmlTimeslots += `<div class="timeslot" data-timeslot="0">12</div>`;
+			} else {
+				htmlTimeslots += `<div class="timeslot" data-timeslot="${i}">${i}</div>`;
+			}
+		} else {
+			htmlTimeslots += `<div class="timeslot" data-timeslot="${i}">${
+				i - 12
+			}</div>`;
+		}
 	}
 
-	// ==========  MODAL ========== //
+	htmlTimeslots += '</div>'; // end of .col
 
-	datesContainer.addEventListener('click', event => {
-		if (event.target.classList.contains('date')) {
-			// Task Modal Pop Up
-			modalPopup(event);
-		}
-	});
+	return htmlTimeslots;
 }

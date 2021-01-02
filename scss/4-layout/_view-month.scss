@@ -12,3 +12,8 @@
 .row.month .date  {
 	width: calc(100% / 7);
 }
+
+// Remove bottom border from last row
+.row:last-child.month .date  {
+	border-bottom: none;
+}

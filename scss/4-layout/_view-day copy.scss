@@ -1,0 +1,77 @@
+// ========== CONTAINER ========== //
+
+// Row container for time blocks
+.row.day {
+  display: flex;
+  width: 100%;
+}
+
+.row.day .timeslot.first {
+  position: fixed;
+  width: calc(100% / 7);
+  background: white;
+}
+
+.row.day .timeslot .date {
+  display: flex;
+  border: 1px solid white;
+  width: 100%;
+}
+
+
+// ========== COLUMN FOR TIMESLOTS FOR EACH DAY ========== //
+
+.row.day .col.timeslot {
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+
+
+
+// ========== DATE NUMBER & DOW ========== //
+
+
+// Date container for number & dow
+.row.day .col .date {
+  border: none !important;
+  align-self: flex-start;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 12px 0 16px 4px;
+}
+
+// Date Day of Week, SUN - SAT
+.row.day .col .date .dow {
+  font-size: 12px;
+  color: map-get-deep($palette, 'dark', '100');
+}
+
+
+// Date Number, 1 - 31
+.row.day .col .date .num {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 23px;
+  color: white;
+  width: 43px;
+  height: 43px;
+  border-radius: 50%;
+  background: map-get-deep($palette, 'light', '100');
+  background: map-get-deep($palette, 'primary', '400');
+}
+
+// ========== TIME SLOTS FOR EACH DAY ========== //
+
+
+.row.day .col .timeslot {
+  color: map-get-deep($palette, 'light', '600');
+  height: 44px;
+  border-bottom: 1px solid map-get-deep($palette, 'light', '600');
+}
+
+// Add right border to each timeslot IF not in last column
+.row.day .col:not(:last-child) .timeslot {
+  border-right: 1px solid map-get-deep($palette, 'light', '600');
+}

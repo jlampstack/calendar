@@ -1,25 +1,122 @@
-// Main row container for day view
-.row.day  {
-	width: 100%;
+// ========== CONTAINER ========== //
+
+// Parent Row container for time blocks
+.row.day {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 }
 
-// Row for the date container in the day view
-.row.day .date {
-	align-items: flex-start;
-	width: 100%;
+// ========== HEADING ROW ========== //
+
+// Row Heading Container
+.row.heading {
+  position: fixed;
+  background: white;
+  width: calc(100% - 18px); // scrollbar is approx 18px wide
+  // border-bottom: 1px solid map-get-deep($palette, 'light', '600');
 }
 
-// Number of Date for "Today" e.g.) 1 - 31
-.row.day .date_num {
-	margin-left: 10px;
-	font-size: 25px;
-	font-weight: 400;
-	padding: 24px;
+// First column, spacer for alignment, should be same width as timeslot legend
+.row.heading .spacer {
+  // flex-grow: 2;
+  width: 44px;
 }
 
-// <span> Day of Week for Date e.g.) SUN - SAT
-.row.day .date_dow {
-	font-size: 12px;
-	margin-left: 23px;
+// Date Container
+.row.heading .col {
+  flex-grow: 1;
+  display: flex;  
+  align-items: center;
+  border: none;
+  padding-bottom: 0rem;
+  // border-right: 1px solid pink;
 }
 
+// Container for dow & number
+.row.heading .date {
+  width: 60px;
+  // border: 3px solid red;
+}
+
+
+// DOW e.g.) SUN - SAT
+.row.heading .dow {
+  margin-top: 7px;
+  margin-bottom: 1px;
+  font-size: 12px;
+  color: map-get-deep($palette, 'dark', '100');
+}
+
+// Number e.g.) 1 - 31
+.row.heading .num {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 22px;
+  color: white;
+  width: 44px;
+  height: 44px;
+  background: map-get-deep($palette, 'primary', '400');
+  border-radius: 50%;
+}
+
+// ========== TIMESLOTS ROW ========== //
+
+
+// Column for each day
+.row.timeslots .col:first-child {
+  flex-grow: 0;
+  width: 44px;
+  // background: red;
+  border: none;
+  margin-top: 2rem;
+}
+
+
+//
+.row.timeslots .timeslot_legend {
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 11px;
+  align-items: center;
+  color:  map-get-deep($palette, 'dark', '100');
+  font-size: 10px;
+  height: 44px;
+  border-bottom: 1px solid map-get-deep($palette, 'light', '600');
+  border-right: 1px solid map-get-deep($palette, 'light', '600');
+}
+
+// Row Timeslots Container
+.row.timeslots {
+  display: flex;
+  margin-top: 24px;
+}
+
+// Column for each day
+.row.timeslots .col {
+  flex-grow: 1;
+}
+
+// Timeslot container for each hour in day, 24
+.row.timeslots .timeslot {
+  height: 44px;
+  font-size: 10px;
+  color: map-get-deep($palette, 'light', '600');
+}
+
+// First timeslot gets special styling
+.row.timeslots .timeslot:nth-child(1) {
+  margin-top: 2rem;
+}
+
+// Add border bottom only to all timeslots except last row
+.row.timeslots .timeslot:not(:last-child) {
+  border-bottom: 1px solid map-get-deep($palette, 'light', '600');
+}
+
+// Add border right to all timeslots that are not of the last column
+.row.timeslots .col:not(:last-child) .timeslot {
+  border-right: 1px solid map-get-deep($palette, 'light', '600');
+}

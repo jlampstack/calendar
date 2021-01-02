@@ -4,8 +4,8 @@
 	"description": "Calendar with views for day, week, month, year",
 	"main": "main.js",
 	"scripts": {
-		"build:sass": "node-sass scss/index.scss main.css",
-		"watch:sass": "node-sass scss/index.scss main.css -w",
+		"sass:build": "node-sass scss/index.scss main.css",
+		"sass:watch": "node-sass scss/index.scss main.css -w",
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"repository": {

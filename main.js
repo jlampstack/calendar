@@ -1,6 +1,6 @@
 import { d } from './js/date.js';
 
-import { renderDay } from './js/renderDay.js';
+import { renderViewDay } from './js/renderViewDay.js';
 import { renderMonth } from './js/renderMonth.js';
 import { renderWeek } from './js/renderWeek.js';
 
@@ -21,8 +21,8 @@ const viewsButton = query('.dropdown_views .btn');
 const viewsDropdownMenu = query('.dropdown_views .menu');
 
 // Init calendar with month view
-// renderDay();
-renderWeek();
+renderViewDay();
+// renderWeek();
 // renderMonth();
 
 // ==========  FUNCTIONS ========== //

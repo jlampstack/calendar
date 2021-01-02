@@ -1398,8 +1398,7 @@ h1 {
   align-items: center;
   width: 99%;
   /* height: 100px; */
-  height: 60px;
-  border-top: 1px solid #e2e7e9; }
+  height: 60px; }
 
 /* Heading Left Section*/
 .calendar_heading .heading_left {
@@ -1431,7 +1430,8 @@ h1 {
 
 /* Container for all dates */
 .calendar_dates {
-  overflow: hidden;
+  overflow-y: scroll;
+  overflow-x: hidden;
   display: flex;
   flex-wrap: wrap;
   height: 100%;
@@ -1485,21 +1485,83 @@ h1 {
   background: #258ae9; }
 
 .row.day {
+  position: relative;
+  display: flex;
+  flex-direction: column;
   width: 100%; }
 
-.row.day .date {
-  align-items: flex-start;
-  width: 100%; }
+.row.heading {
+  position: fixed;
+  background: white;
+  width: calc(100% - 18px); }
 
-.row.day .date_num {
-  margin-left: 10px;
-  font-size: 25px;
-  font-weight: 400;
-  padding: 24px; }
+.row.heading .spacer {
+  width: 44px; }
 
-.row.day .date_dow {
+.row.heading .col {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  border: none;
+  padding-bottom: 0rem; }
+
+.row.heading .date {
+  width: 60px; }
+
+.row.heading .dow {
+  margin-top: 7px;
+  margin-bottom: 1px;
   font-size: 12px;
-  margin-left: 23px; }
+  color: #788187; }
+
+.row.heading .num {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 22px;
+  color: white;
+  width: 44px;
+  height: 44px;
+  background: #258ae9;
+  border-radius: 50%; }
+
+.row.timeslots .col:first-child {
+  flex-grow: 0;
+  width: 44px;
+  border: none;
+  margin-top: 2rem; }
+
+.row.timeslots .timeslot_legend {
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 11px;
+  align-items: center;
+  color: #788187;
+  font-size: 10px;
+  height: 44px;
+  border-bottom: 1px solid #e2e7e9;
+  border-right: 1px solid #e2e7e9; }
+
+.row.timeslots {
+  display: flex;
+  margin-top: 24px; }
+
+.row.timeslots .col {
+  flex-grow: 1; }
+
+.row.timeslots .timeslot {
+  height: 44px;
+  font-size: 10px;
+  color: #e2e7e9; }
+
+.row.timeslots .timeslot:nth-child(1) {
+  margin-top: 2rem; }
+
+.row.timeslots .timeslot:not(:last-child) {
+  border-bottom: 1px solid #e2e7e9; }
+
+.row.timeslots .col:not(:last-child) .timeslot {
+  border-right: 1px solid #e2e7e9; }
 
 .row.week {
   width: 100%; }
@@ -1516,6 +1578,9 @@ h1 {
 
 .row.month .date {
   width: calc(100% / 7); }
+
+.row:last-child.month .date {
+  border-bottom: none; }
 
 /* ========== ARROWS ========== */
 /* Container for arrows */
@@ -1762,36 +1827,6 @@ h1 {
 
 .modal_bottom .btn:hover {
   background: #1c74e9; }
-
-/* ========== TIME ========== */
-/* Container for all time slots */
-.scroller {
-  overflow-y: scroll;
-  flex-grow: 1;
-  width: 100%;
-  height: 100px; }
-
-/* Container for all time slots */
-.timeslots {
-  flex-grow: 1;
-  width: 100%;
-  height: 100px; }
-
-/* Individual Time Slot */
-.timeslot {
-  display: flex;
-  align-items: center;
-  width: 100%;
-  height: 50px;
-  font-size: 14px;
-  border-bottom: 1px solid #f1f3f4;
-  color: #6c747a; }
-
-.timeslot span {
-  width: 2.625rem;
-  font-size: 10px;
-  text-align: right;
-  margin-left: 0rem; }
 
 .home {
   display: flex;

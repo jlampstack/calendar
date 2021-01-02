@@ -1,7 +1,6 @@
 import { d, daysShort } from './date.js';
 
 import { renderHeading } from './renderHeading.js';
-import { renderTimeSlotBlocks } from './renderTimeSlots.js';
 
 import { modalPopup } from './modal.js';
 
