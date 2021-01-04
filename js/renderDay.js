@@ -2,6 +2,8 @@ import { d, daysShort } from './date.js';
 
 import { renderTimeslots, renderTimeLegend } from './renderTimeslots.js';
 
+import { renderHeading } from './renderHeading.js';
+
 import { modalPopup } from './modalDay.js';
 
 // ==========  GLOBAL ELEMENTS ========== //
@@ -12,11 +14,16 @@ const queryAll = document.querySelectorAll.bind(document);
 
 // Elements
 const datesContainer = query('.calendar_dates');
+const calendarTitle = query('.calendar_title');
 
 // ==========  FUNCTION SCOPE ========== //
 
 // Render Day View
 export function renderDay(direction = null) {
+	const calendarTitleDate = new Date(
+		Date.parse(calendarTitle.getAttribute('data-date')),
+	);
+
 	// Parent Row Container
 	datesContainer.innerHTML = `<div class="row day">`;
 	// GET datesContainer, above
@@ -29,18 +36,23 @@ export function renderDay(direction = null) {
 	rowHeadings.className = 'row heading';
 	rowHeadings.innerHTML = `<div class="spacer"></div>`;
 
-	// ADD TODAY
-	for (let j = d.getDate(); j < 7 - d.getDay() + d.getDate(); j++) {
-		let date = new Date(d.getFullYear(), d.getMonth(), j);
+	let date = new Date(d.getFullYear(), d.getMonth(), d.getDate());
 
-		if (date.getDate() === d.getDate()) {
-			rowHeadings.innerHTML += `<div class="col" data-date="${date}">
+	// ADD TODAY
+	if (calendarTitle.getAttribute('data-date')) {
+		rowHeadings.innerHTML += `<div class="col" data-date="${date}">
 				<div class="date">
-						<div class="dow today">${daysShort[date.getDay()]}</div>
+						<div class="dow">${daysShort[date.getDay()]}</div>
+						<div class="num">${date.getDate()}</div>
+				</div>
+		</div>`;
+	} else {
+		rowHeadings.innerHTML += `<div class="col" data-date="${date}">
+				<div class="date">
+						<div class="dow">${daysShort[date.getDay()]}</div>
 						<div class="num today">${date.getDate()}</div>
 				</div>
-			</div>`;
-		}
+		</div>`;
 	}
 
 	row.appendChild(rowHeadings);
@@ -52,14 +64,7 @@ export function renderDay(direction = null) {
 	rowTimeslots.className = 'row timeslots';
 	rowTimeslots.innerHTML = `<div class="spacer">${renderTimeLegend()}</div>`;
 
-	// ADD REMAINING DATES OF DAY: Today & After
-	for (let j = d.getDate(); j < 7 - d.getDay() + d.getDate(); j++) {
-		let date = new Date(d.getFullYear(), d.getMonth(), j);
-
-		if (date.getDate() === d.getDate()) {
-			rowTimeslots.innerHTML += renderTimeslots(date);
-		}
-	}
+	rowTimeslots.innerHTML += renderTimeslots(date);
 
 	row.appendChild(rowTimeslots);
 

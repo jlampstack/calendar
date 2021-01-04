@@ -186,6 +186,3 @@ function handleTouchMove(evt) {
 	xDown = null;
 	yDown = null;
 }
-
-// Displays Calendar Heading Depending on State of the view Button
-renderHeading();

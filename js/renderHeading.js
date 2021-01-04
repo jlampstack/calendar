@@ -6,15 +6,17 @@ import { renderCalendarView } from './renderCalendarViewButton.js';
 const query = document.querySelector.bind(document);
 const queryAll = document.querySelectorAll.bind(document);
 
-const calendarTitle = query('.calendar_title');
-const viewsButton = query('.dropdown_views .btn');
+// Date passed sets date back to today when view changes, solution
+export function renderHeading(date) {
+	const calendarTitle = query('.calendar_title');
+	const viewsButton = query('.dropdown_views .btn');
+	const today = new Date();
 
-export function renderHeading() {
 	// DAY
 	if (viewsButton.getAttribute('value') == 'day') {
 		calendarTitle.innerText = `${
-			months[d.getMonth()]
-		} ${d.getDate()}, ${d.getFullYear()}`;
+			months[today.getMonth()]
+		} ${today.getDate()}, ${today.getFullYear()}`;
 	}
 	// WEEK
 	if (viewsButton.getAttribute('value') == 'week') {

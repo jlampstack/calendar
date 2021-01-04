@@ -2,7 +2,9 @@ import { d, daysShort } from './date.js';
 
 import { renderTimeslots, renderTimeLegend } from './renderTimeslots.js';
 
-import { modalPopup } from './modal.js';
+import { renderHeading } from './renderHeading.js';
+
+import { modalPopup } from './modalDay.js';
 
 // ==========  GLOBAL ELEMENTS ========== //
 
@@ -15,7 +17,7 @@ const datesContainer = query('.calendar_dates');
 
 // ==========  FUNCTION SCOPE ========== //
 
-// Renders Day View
+// Render Day View
 export function renderDay(direction = null) {
 	// Parent Row Container
 	datesContainer.innerHTML = `<div class="row day">`;
@@ -29,34 +31,16 @@ export function renderDay(direction = null) {
 	rowHeadings.className = 'row heading';
 	rowHeadings.innerHTML = `<div class="spacer"></div>`;
 
-	// ADD BEFORE DATES OF DAY: "Before" Today
-	for (let i = d.getDate() - d.getDay(); i < d.getDate(); i++) {
-		let date = new Date(d.getFullYear(), d.getMonth(), i);
-
-		rowHeadings.innerHTML += `<div class="col" data-date="${date}">
-					<div class="date">
-							<div class="dow">${daysShort[date.getDay()]}</div>
-							<div class="num">${date.getDate()}</div>
-					</div>
-			</div>`;
-	}
-
-	// ADD REMAINING DATES OF DAY: Today & After
+	// ADD TODAY
 	for (let j = d.getDate(); j < 7 - d.getDay() + d.getDate(); j++) {
 		let date = new Date(d.getFullYear(), d.getMonth(), j);
+		console.log(date);
 
 		if (date.getDate() === d.getDate()) {
 			rowHeadings.innerHTML += `<div class="col" data-date="${date}">
 				<div class="date">
 						<div class="dow today">${daysShort[date.getDay()]}</div>
 						<div class="num today">${date.getDate()}</div>
-				</div>
-			</div>`;
-		} else {
-			rowHeadings.innerHTML += `<div class="col" data-date="${date}">
-				<div class="date">
-						<div class="dow">${daysShort[date.getDay()]}</div>
-						<div class="num">${date.getDate()}</div>
 				</div>
 			</div>`;
 		}
@@ -71,20 +55,11 @@ export function renderDay(direction = null) {
 	rowTimeslots.className = 'row timeslots';
 	rowTimeslots.innerHTML = `<div class="spacer">${renderTimeLegend()}</div>`;
 
-	// ADD BEFORE DATES OF DAY: "Before" Today
-	for (let i = d.getDate() - d.getDay(); i < d.getDate(); i++) {
-		let date = new Date(d.getFullYear(), d.getMonth(), i);
-
-		rowTimeslots.innerHTML += renderTimeslots(date);
-	}
-
 	// ADD REMAINING DATES OF DAY: Today & After
 	for (let j = d.getDate(); j < 7 - d.getDay() + d.getDate(); j++) {
 		let date = new Date(d.getFullYear(), d.getMonth(), j);
 
 		if (date.getDate() === d.getDate()) {
-			rowTimeslots.innerHTML += renderTimeslots(date);
-		} else {
 			rowTimeslots.innerHTML += renderTimeslots(date);
 		}
 	}
