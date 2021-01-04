@@ -1,17 +1,18 @@
 // ========== CONTAINER ========== //
 
 // Parent Row container for time blocks
-.row.week {
+.row.day {
   position: relative;
   display: flex;
   flex-direction: column;
   width: 100%;
+  height: 200vh;
 }
 
 // ========== HEADING ROW ========== //
 
 // Row Heading Container
-.row.week .row.heading {
+.row.day .row.heading {
   display: flex;
   position: fixed;
   background: white;
@@ -19,13 +20,13 @@
 }
 
 // First column, spacer for alignment, should be same width as timeslot legend
-.row.week .row.heading .spacer {
+.row.day .row.heading .spacer {
   // flex-grow: 2;
   width: 44px;
 }
 
 // Date Container
-.row.week .row.heading .col {
+.row.day .row.heading .col {
   flex-grow: 1;
   display: flex;  
   flex-direction: column;
@@ -33,14 +34,14 @@
 }
 
 // Container for dow & number
-.row.week .row.heading .date {
+.row.day .row.heading .date {
   align-self: center;
   width: 60px;
 }
 
 
 // DOW e.g.) SUN - SAT
-.row.week .row.heading .dow {
+.row.day .row.heading .dow {
   margin-top: 7px;
   margin-bottom: 1px;
   font-size: 12px;
@@ -48,7 +49,7 @@
 }
 
 // NUM: Number e.g.) 1 - 31
-.row.week .row.heading .num {
+.row.day .row.heading .num {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -61,13 +62,13 @@
 }
 
 // Add focus to DOW for today
-.row.week .row.heading .dow.today {
+.row.day .row.heading .dow.today {
   color: map-get-deep($palette, 'primary', '500');
   background: white;
 }
 
 // Add focus to NUM for today
-.row.week .row.heading .num.today {
+.row.day .row.heading .num.today {
   color: white;
 }
 
@@ -75,7 +76,7 @@
 
 
 // Column for each day
-.row.week .row.timeslots .col:first-child {
+.row.day .row.timeslots .col:first-child {
   flex-grow: 0;
   width: 44px;
   border: none;
@@ -84,7 +85,7 @@
 
 
 //
-.row.week .row.timeslots .timeslot_legend {
+.row.day .row.timeslots .timeslot_legend {
   position: relative;
   top: 9px;
   right: -16px;
@@ -99,34 +100,34 @@
 }
 
 // Row Timeslots Container
-.row.week .row.timeslots {
+.row.day .row.timeslots {
   display: flex;
   margin-top: 24px;
 }
 
 // Column for each day
-.row.week .row.timeslots .col {
+.row.day .row.timeslots .col {
   flex-grow: 1;
 }
 
 // Timeslot container for each hour in day, 24
-.row.week .row.timeslots .timeslot {
+.row.day .row.timeslots .timeslot {
   height: 44px;
   font-size: 10px;
   color: map-get-deep($palette, 'light', '600');
 }
 
 // First timeslot gets special styling
-.row.week .row.timeslots .timeslot:nth-child(1) {
+.row.day .row.timeslots .timeslot:nth-child(1) {
   margin-top: 2rem;
 }
 
 // Add border bottom only to all timeslots except last row
-.row.week .row.timeslots .timeslot:not(:last-child) {
+.row.day .row.timeslots .timeslot:not(:last-child) {
   border-bottom: 1px solid map-get-deep($palette, 'light', '600');
 }
 
 // Add border right to all timeslots that are not of the last column
-.row.week .row.timeslots .col:not(:last-child) .timeslot {
+.row.day .row.timeslots .col:not(:last-child) .timeslot {
   border-right: 1px solid map-get-deep($palette, 'light', '600');
 }

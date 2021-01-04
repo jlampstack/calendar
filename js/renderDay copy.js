@@ -29,7 +29,19 @@ export function renderDay(direction = null) {
 	rowHeadings.className = 'row heading';
 	rowHeadings.innerHTML = `<div class="spacer"></div>`;
 
-	// ADD TODAY
+	// ADD BEFORE DATES OF DAY: "Before" Today
+	for (let i = d.getDate() - d.getDay(); i < d.getDate(); i++) {
+		let date = new Date(d.getFullYear(), d.getMonth(), i);
+
+		rowHeadings.innerHTML += `<div class="col" data-date="${date}">
+					<div class="date">
+							<div class="dow">${daysShort[date.getDay()]}</div>
+							<div class="num">${date.getDate()}</div>
+					</div>
+			</div>`;
+	}
+
+	// ADD REMAINING DATES OF DAY: Today & After
 	for (let j = d.getDate(); j < 7 - d.getDay() + d.getDate(); j++) {
 		let date = new Date(d.getFullYear(), d.getMonth(), j);
 
@@ -38,6 +50,13 @@ export function renderDay(direction = null) {
 				<div class="date">
 						<div class="dow today">${daysShort[date.getDay()]}</div>
 						<div class="num today">${date.getDate()}</div>
+				</div>
+			</div>`;
+		} else {
+			rowHeadings.innerHTML += `<div class="col" data-date="${date}">
+				<div class="date">
+						<div class="dow">${daysShort[date.getDay()]}</div>
+						<div class="num">${date.getDate()}</div>
 				</div>
 			</div>`;
 		}
@@ -52,11 +71,20 @@ export function renderDay(direction = null) {
 	rowTimeslots.className = 'row timeslots';
 	rowTimeslots.innerHTML = `<div class="spacer">${renderTimeLegend()}</div>`;
 
+	// ADD BEFORE DATES OF DAY: "Before" Today
+	for (let i = d.getDate() - d.getDay(); i < d.getDate(); i++) {
+		let date = new Date(d.getFullYear(), d.getMonth(), i);
+
+		rowTimeslots.innerHTML += renderTimeslots(date);
+	}
+
 	// ADD REMAINING DATES OF DAY: Today & After
 	for (let j = d.getDate(); j < 7 - d.getDay() + d.getDate(); j++) {
 		let date = new Date(d.getFullYear(), d.getMonth(), j);
 
 		if (date.getDate() === d.getDate()) {
+			rowTimeslots.innerHTML += renderTimeslots(date);
+		} else {
 			rowTimeslots.innerHTML += renderTimeslots(date);
 		}
 	}

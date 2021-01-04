@@ -1,4 +1,4 @@
-import { renderViewDay } from './renderViewDay.js';
+import { renderDay } from './renderDay.js';
 import { renderWeek } from './renderWeek.js';
 import { renderMonth } from './renderMonth.js';
 
@@ -21,7 +21,7 @@ export function renderCalendarView(event) {
 			viewsButton.setAttribute('value', 'day');
 			dropdownBtnViews.style.display = 'none';
 			htmlButton();
-			renderViewDay();
+			renderDay();
 			break;
 		case 'Week':
 			viewsButton.innerHTML = `Week <span class="arrow-down"></span>`;
