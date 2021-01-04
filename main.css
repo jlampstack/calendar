@@ -1484,13 +1484,14 @@ h1 {
   color: white;
   background: #258ae9; }
 
-.row.day {
+.row.week {
   position: relative;
   display: flex;
   flex-direction: column;
   width: 100%; }
 
 .row.heading {
+  display: flex;
   position: fixed;
   background: white;
   width: calc(100% - 18px); }
@@ -1501,11 +1502,11 @@ h1 {
 .row.heading .col {
   flex-grow: 1;
   display: flex;
-  align-items: center;
-  border: none;
+  flex-direction: column;
   padding-bottom: 0rem; }
 
 .row.heading .date {
+  align-self: center;
   width: 60px; }
 
 .row.heading .dow {
@@ -1522,8 +1523,15 @@ h1 {
   color: white;
   width: 44px;
   height: 44px;
-  background: #258ae9;
+  color: #788187;
   border-radius: 50%; }
+
+.row.heading .dow.today {
+  color: #1c74e9;
+  background: white; }
+
+.row.heading .num.today {
+  color: white; }
 
 .row.timeslots .col:first-child {
   flex-grow: 0;
@@ -1532,15 +1540,17 @@ h1 {
   margin-top: 2rem; }
 
 .row.timeslots .timeslot_legend {
+  position: relative;
+  top: 9px;
+  right: -16px;
   display: flex;
   justify-content: flex-end;
-  padding-right: 11px;
+  padding-right: 25px;
   align-items: center;
   color: #788187;
   font-size: 10px;
-  height: 44px;
-  border-bottom: 1px solid #e2e7e9;
-  border-right: 1px solid #e2e7e9; }
+  width: 44px;
+  height: 44px; }
 
 .row.timeslots {
   display: flex;
@@ -1562,12 +1572,6 @@ h1 {
 
 .row.timeslots .col:not(:last-child) .timeslot {
   border-right: 1px solid #e2e7e9; }
-
-.row.week {
-  width: 100%; }
-
-.row.week .date {
-  width: 100%; }
 
 /* Default view is "Month" */
 .row.month {
@@ -1703,7 +1707,7 @@ h1 {
   position: relative;
   display: block;
   flex-direction: column;
-  width: 400px;
+  width: 450px;
   /* height: 500px; */
   min-height: 50vh;
   background: white;
@@ -1760,16 +1764,31 @@ h1 {
   text-decoration: none;
   cursor: pointer; }
 
+#modal .body {
+  padding: 0 1.5rem; }
+
 .modal_date {
   position: relative;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   height: 36px; }
 
 .modal_date-text {
   font-size: 14px;
+  font-weight: 500;
   color: #788187; }
+
+.modal_date-text .timeblock-range {
+  margin: 0 6px;
+  padding: 9px 6px;
+  background: #f1f3f4;
+  border-radius: 6px;
+  color: #4f5559; }
+
+.modal_date-text .date-start,
+.modal_date-text .date-end {
+  font-weight: 400; }
 
 #modal form {
   display: flex;
@@ -1780,11 +1799,11 @@ h1 {
 
 #modal input {
   align-self: center;
-  width: 80%;
+  width: 100%;
   height: 48px;
   outline: none;
   border: 0;
-  border-bottom: 1px solid var(--light-500);
+  border-bottom: 1px solid #e2e7e9;
   font-size: 22px; }
 
 .input--focus {

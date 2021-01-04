@@ -1,7 +1,7 @@
 // ========== CONTAINER ========== //
 
 // Parent Row container for time blocks
-.row.day {
+.row.week {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -16,7 +16,6 @@
   position: fixed;
   background: white;
   width: calc(100% - 18px); // scrollbar is approx 18px wide
-  // border-bottom: 1px solid map-get-deep($palette, 'light', '600');
 }
 
 // First column, spacer for alignment, should be same width as timeslot legend
@@ -31,11 +30,11 @@
   display: flex;  
   flex-direction: column;
   padding-bottom: 0rem;
-  // border-right: 1px solid pink;
 }
 
 // Container for dow & number
 .row.heading .date {
+  align-self: center;
   width: 60px;
 }
 
@@ -45,7 +44,7 @@
   margin-top: 7px;
   margin-bottom: 1px;
   font-size: 12px;
-  color: map-get-deep($palette, 'primary', '400');
+  color: map-get-deep($palette, 'dark', '100');
 }
 
 // NUM: Number e.g.) 1 - 31
@@ -57,8 +56,19 @@
   color: white;
   width: 44px;
   height: 44px;
-  // background: map-get-deep($palette, 'primary', '400');
+  color: map-get-deep($palette, 'dark', '100');
   border-radius: 50%;
+}
+
+// Add focus to DOW for today
+.row.heading .dow.today {
+  color: map-get-deep($palette, 'primary', '500');
+  background: white;
+}
+
+// Add focus to NUM for today
+.row.heading .num.today {
+  color: white;
 }
 
 // ========== TIMESLOTS ROW ========== //
@@ -68,14 +78,12 @@
 .row.timeslots .col:first-child {
   flex-grow: 0;
   width: 44px;
-  // background: red;
   border: none;
-  border: 11px solid red;
   margin-top: 2rem;
 }
 
 
-// Legend
+//
 .row.timeslots .timeslot_legend {
   display: flex;
   justify-content: flex-end;
@@ -84,7 +92,6 @@
   color:  map-get-deep($palette, 'dark', '100');
   font-size: 10px;
   height: 44px;
-  border-bottom: 1px solid map-get-deep($palette, 'light', '600');
   border-right: 1px solid map-get-deep($palette, 'light', '600');
 }
 

@@ -3,7 +3,7 @@ import { d, daysShort } from './date.js';
 // Renders Timeslots for day, 24 timeslots for 24 hrs in a day
 export function renderTimeLegend() {
 	// Column
-	let htmlTimeslots = `<div class="col legend">`;
+	let htmlTimeslots = ``;
 	// Add Timeslots
 	for (let i = 0; i < 24; i++) {
 		if (i < 13) {
@@ -26,9 +26,10 @@ export function renderTimeLegend() {
 }
 
 // Renders Timeslots for day, 24 timeslots for 24 hrs in a day
-export function renderDayTimeslots() {
+// Note: renders only the timeslots and not it's col container which must
+export function renderTimeslots(date) {
 	// Column
-	let htmlTimeslots = `<div class="col" data-date="abc">`;
+	let htmlTimeslots = `<div class="col" data-timeslot="${date}">`;
 	// Add Timeslots
 	for (let i = 0; i < 24; i++) {
 		if (i < 13) {
@@ -47,3 +48,5 @@ export function renderDayTimeslots() {
 
 	return htmlTimeslots;
 }
+
+// If timeslot is clicked bring up modal

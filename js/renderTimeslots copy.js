@@ -26,7 +26,7 @@ export function renderTimeLegend() {
 }
 
 // Renders Timeslots for day, 24 timeslots for 24 hrs in a day
-export function renderDayTimeslots() {
+export function renderTimeslots() {
 	// Column
 	let htmlTimeslots = `<div class="col" data-date="abc">`;
 	// Add Timeslots
