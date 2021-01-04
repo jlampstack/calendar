@@ -136,25 +136,10 @@ export function modalPopup(event) {
 		const targetDateBottom = Math.floor(targetDateTop + targetDateHeight);
 		const targetDateRight = Math.floor(targetDateLeft + targetDateWidth);
 
-		modal.style.display = 'block';
-		// IF day index is 0 or 1 (Sun - Mon), modal should display to right
-		if (
-			targetDate.getDay() === 0 ||
-			targetDate.getDay() === 1 ||
-			targetDate.getDay() === 2
-		) {
-			modal.style.display = 'block';
-			modalContent.style.top = `15vh`;
-			modalContent.style.left = `${targetDateRight + 0}px`;
-		} else if (targetDate.getDay() === 3) {
-			modal.style.display = 'block';
-			modalContent.style.top = `15vh`;
-			modalContent.style.left = `${targetDateLeft - 200}px`;
-		} else {
-			modal.style.display = 'block';
-			modalContent.style.top = `15vh`;
-			modalContent.style.left = `${targetDateLeft - 400}px`;
-		}
+		modal.style.display = 'flex';
+		modal.style.justifyContent = 'center';
+		modalContent.style.height = '485px';
+		modalContent.style.top = `15vh`;
 	}
 
 	const inputTask = query('.add-task');

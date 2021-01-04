@@ -1,11 +1,19 @@
-
 /* Default view is "Month" */
 
-/* Container for all dates */
-.calendar_dates {
-	overflow: hidden;
-	display: flex;
-	flex-wrap: wrap;
-	height: 100%;
-	border: 1px solid map-get-deep($palette, 'light', '600');
+.row.month {
+	width: 100%;
+}
+
+.row.month:not(:last-child) {
+	border-bottom: 1px solid map-get-deep($palette, 'light', '600');
+}
+
+
+.row.month .date  {
+	width: calc(100% / 7);
+}
+
+// Remove bottom border from last row
+.row:last-child.month .date  {
+	border-bottom: none;
 }

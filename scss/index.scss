@@ -13,11 +13,13 @@
 @import '3-base/fonts';
 @import '3-base/helpers';
 @import '3-base/typography';
+@import '3-base/utility';
 
 // 4. Layout related sections - Focuses on wireframe
 @import '4-layout/app';
 @import '4-layout/calendar';
 @import '4-layout/heading';
+@import '4-layout/view_base';
 @import '4-layout/view-day';
 @import '4-layout/view-week';
 @import '4-layout/view-month';
@@ -26,11 +28,9 @@
 // 5. Components - Similar to layout but focuses on smaller widgets
 @import '5-components/arrows';
 @import '5-components/buttons';
-@import '5-components/date-month';
 @import '5-components/dropdown-views';
 @import '5-components/logo';
 @import '5-components/modal';
-@import '5-components/time-slot';
 
 // 6. Page specific styles
 @import '6-pages/home';

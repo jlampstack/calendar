@@ -12,13 +12,7 @@ body {
 
 
 p {
-  font: normal 125% / 1.4 map-get-deep($palette, 'dark', '600');
-}
-
-// ========== COLORS ========== //
-
-.light-500 {
-  color: map-get-deep($palette, 'light', '800');
+  font: normal 125% / 1.4 map-get-deep($palette, 'dark', '500');
 }
 
 /////////////////

@@ -5,7 +5,7 @@ import { renderMonth } from './js/renderMonth.js';
 import { renderWeek } from './js/renderWeek.js';
 
 import { renderCalendarView } from './js/renderCalendarViewButton.js';
-import { modalPopup } from './js/modal.js';
+import { renderHeading } from './js/renderHeading.js';
 
 // Query Alias
 const query = document.querySelector.bind(document);
@@ -21,9 +21,9 @@ const viewsButton = query('.dropdown_views .btn');
 const viewsDropdownMenu = query('.dropdown_views .menu');
 
 // Init calendar with month view
-// renderDay();
+renderDay();
 // renderWeek();
-renderMonth();
+// renderMonth();
 
 // ==========  FUNCTIONS ========== //
 
@@ -186,3 +186,6 @@ function handleTouchMove(evt) {
 	xDown = null;
 	yDown = null;
 }
+
+// Displays Calendar Heading Depending on State of the view Button
+renderHeading();

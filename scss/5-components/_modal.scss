@@ -7,7 +7,6 @@
 	z-index: 9999; /* Sit on top */
 	width: 100%;
 	height: 100vh;
-	background: none;
 	background: hsl(180, 50%, 100%); /* Fallback color */
 	background: rgba(0, 0, 0, 0.2); /* Opacity color */
 }
@@ -17,7 +16,7 @@
 	position: relative;
 	display: block;
 	flex-direction: column;
-	width: 400px;
+	width: 450px;
 	/* height: 500px; */
 	min-height: 50vh;
 	background: hsl(180, 50%, 100%); /* Black w/ opacity */
@@ -81,17 +80,35 @@
 	cursor: pointer;
 }
 
+#modal .body {
+	padding: 0 1.5rem;
+}
+
 .modal_date {
 	position: relative;
 	display: flex;
-	justify-content: center;
+	justify-content: flex-start;
 	align-items: center;
 	height: 36px;
 }
 
 .modal_date-text {
 	font-size: 14px;
+	font-weight: 500;
 	color: map-get-deep($palette, 'dark', '100');
+}
+
+.modal_date-text .timeblock-range {
+	margin: 0 6px;
+	padding: 9px 6px;
+	background:  map-get-deep($palette, 'light', '500');
+	border-radius: 6px;
+	color: map-get-deep($palette, 'dark', '500');
+}
+
+.modal_date-text .date-start,
+.modal_date-text .date-end {
+	font-weight: 400;
 }
 
 #modal form {
@@ -104,11 +121,11 @@
 
 #modal input {
 	align-self: center;
-	width: 80%;
+	width: 100%;
 	height: 48px;
 	outline: none;
 	border: 0;
-	border-bottom: 1px solid var(--light-500);
+	border-bottom: 1px solid map-get-deep($palette, 'light', '600');
 	font-size: 22px;
 }
 

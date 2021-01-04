@@ -1,7 +1,6 @@
 import { d, daysShort } from './date.js';
 
-import { renderHeading } from './renderHeading.js';
-import { renderTimeSlots } from './renderTimeSlots.js';
+import { renderTimeslots, renderTimeLegend } from './renderTimeslots.js';
 
 import { modalPopup } from './modal.js';
 
@@ -16,55 +15,85 @@ const datesContainer = query('.calendar_dates');
 
 // ==========  FUNCTION SCOPE ========== //
 
-// Find offset to push date "Today" under correct day of week
-// ADD 7 dates of the week
-const today = new Date(d.getFullYear(), d.getMonth(), d.getDate());
-
-// Renders Month
+// Renders Week View
 export function renderWeek(direction = null) {
-	// Heading
-	renderHeading();
-	// Markup inside <div> .calendar_dates
-	datesContainer.innerHTML = `<div class="row">`;
+	// Parent Row Container
+	datesContainer.innerHTML = `<div class="row week">`;
+	// GET datesContainer, above
+	const row = query('.row.week');
 
-	const row = query('.row');
+	// ========== HEADING ========== //
 
-	row.innerHTML = '';
+	// ROW for headings
+	const rowHeadings = document.createElement('DIV');
+	rowHeadings.className = 'row heading';
+	rowHeadings.innerHTML = `<div class="spacer"></div>`;
 
-	// ADD OFFSET DATES: Dates before day of week index
-	for (let i = today.getDate() - today.getDay(); i < today.getDate(); i++) {
-		let date = new Date(d.getDate(), d.getMonth(), i);
-		row.innerHTML += `<div class="date" data-date="${new Date(
-			d.getFullYear(),
-			d.getMonth(),
-			d.getDate() - 1,
-		)}"><div class="date_num">${date.getDate()}</div></div>`;
+	// ADD BEFORE DATES OF WEEK: "Before" Today
+	for (let i = d.getDate() - d.getDay(); i < d.getDate(); i++) {
+		let date = new Date(d.getFullYear(), d.getMonth(), i);
+
+		rowHeadings.innerHTML += `<div class="col" data-date="${date}">
+					<div class="date">
+							<div class="dow">${daysShort[date.getDay()]}</div>
+							<div class="num">${date.getDate()}</div>
+					</div>
+			</div>`;
 	}
 
-	// ADD REMAINING DATES: Today & Remaining dates of the week
-	for (let j = today.getDate(); j < 7 - today.getDay() + today.getDate(); j++) {
+	// ADD REMAINING DATES OF WEEK: Today & After
+	for (let j = d.getDate(); j < 7 - d.getDay() + d.getDate(); j++) {
 		let date = new Date(d.getFullYear(), d.getMonth(), j);
-		if (date.getDate() === today.getDate()) {
-			row.innerHTML += `<div class="date" data-date="${today}"><div class="date_num today">${date.getDate()}</div></div>`;
+
+		if (date.getDate() === d.getDate()) {
+			rowHeadings.innerHTML += `<div class="col" data-date="${date}">
+				<div class="date">
+						<div class="dow today">${daysShort[date.getDay()]}</div>
+						<div class="num today">${date.getDate()}</div>
+				</div>
+			</div>`;
 		} else {
-			row.innerHTML += `<div class="date" data-date="${date}">
-							<div class="date_num">${date.getDate()}</div>
-					</div>`;
+			rowHeadings.innerHTML += `<div class="col" data-date="${date}">
+				<div class="date">
+						<div class="dow">${daysShort[date.getDay()]}</div>
+						<div class="num">${date.getDate()}</div>
+				</div>
+			</div>`;
 		}
 	}
 
-	// Close div .row
-	datesContainer.innerHTML += `</div>`;
+	row.appendChild(rowHeadings);
+
+	// ========== TIME SLOTS ========== //
+
+	// ROW for headings
+	const rowTimeslots = document.createElement('DIV');
+	rowTimeslots.className = 'row timeslots';
+	rowTimeslots.innerHTML = `<div class="spacer">${renderTimeLegend()}</div>`;
+
+	// ADD BEFORE DATES OF WEEK: "Before" Today
+	for (let i = d.getDate() - d.getDay(); i < d.getDate(); i++) {
+		let date = new Date(d.getFullYear(), d.getMonth(), i);
+
+		rowTimeslots.innerHTML += renderTimeslots(date);
+	}
+
+	// ADD REMAINING DATES OF WEEK: Today & After
+	for (let j = d.getDate(); j < 7 - d.getDay() + d.getDate(); j++) {
+		let date = new Date(d.getFullYear(), d.getMonth(), j);
+
+		if (date.getDate() === d.getDate()) {
+			rowTimeslots.innerHTML += renderTimeslots(date);
+		} else {
+			rowTimeslots.innerHTML += renderTimeslots(date);
+		}
+	}
+
+	row.appendChild(rowTimeslots);
+
+	// ========== ANIMATION ========== //
 
 	const dateCollection = queryAll('.date');
-
-	// ADD day of week as column headers (Sun - Sat)
-	dateCollection.forEach((date, index) => {
-		const dow = document.createElement('SPAN');
-		dow.classList.add('date_dow');
-		dow.innerHTML = `${daysShort[index]}`;
-		date.prepend(dow);
-	});
 
 	// ANIMATE: calendar scroll direction ('left' or 'right')
 	if (direction !== null) {
@@ -72,12 +101,19 @@ export function renderWeek(direction = null) {
 		row.classList.add(slideDirection);
 	}
 
-	// ==========  MODAL ========== //
+	// ========== MODAL ========== //
 
-	datesContainer.addEventListener('click', event => {
-		if (event.target.classList.contains('date')) {
-			// Task Modal Pop Up
+	// Timeslot Collection
+	const timeslotCollection = queryAll('.timeslot');
+
+	// Loop thru all timeslots and list for click on each timeslot
+	timeslotCollection.forEach(timeslot => {
+		// Parent Column Element
+		let col = timeslot.parentElement;
+		let date = new Date(Date.parse(col.getAttribute('data-date')));
+
+		timeslot.addEventListener('click', event => {
 			modalPopup(event);
-		}
+		});
 	});
 }

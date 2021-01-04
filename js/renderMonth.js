@@ -2,7 +2,7 @@ import { d, daysShort, getOffsetStart, getLastDateOfMonth } from './date.js';
 
 import { renderHeading } from './renderHeading.js';
 
-import { modalPopup } from './modal.js';
+import { modalPopup } from './modalMonth.js';
 
 // Query Alias
 const query = document.querySelector.bind(document);
@@ -24,7 +24,7 @@ export function renderMonth(direction = null) {
 
 	// ADD ROWS: appropriate num of rows, 5 or 6
 	for (let row = 0; row < numRows; row++) {
-		datesContainer.innerHTML += `<div class="row"></row>`;
+		datesContainer.innerHTML += `<div class="row month"></row>`;
 	}
 
 	// Define after rows are added to the dom
@@ -51,6 +51,10 @@ export function renderMonth(direction = null) {
 
 		// SET data-date attribute for each date container
 		dateCollection[i].setAttribute('data-date', date);
+		// PARSE DATA-DATE from string to date formate
+		let parsedDate = new Date(
+			Date.parse(dateCollection[i].getAttribute('data-date')),
+		);
 
 		// CURRENT MONTH: Add date <div>
 		if (date.getMonth() === d.getMonth()) {
@@ -58,19 +62,17 @@ export function renderMonth(direction = null) {
 			dateCollection[
 				i
 			].innerHTML = `<div class="date_num">${date.getDate()}</div>`;
-			// TODAY: date only for today
-			let dateToday = new Date();
-			// Adjust index -1 to get correct date
+			// Adjust index -1 to get correct date, d = today
 			if (
-				dateToday.getDate() == i - 1 &&
-				dateToday.getMonth() == date.getMonth() &&
-				dateToday.getFullYear() == date.getFullYear()
+				parsedDate.getFullYear() === new Date().getFullYear() &&
+				parsedDate.getMonth() === new Date().getMonth() &&
+				parsedDate.getDate() === new Date().getDate()
 			) {
 				const dateNumCollection = queryAll('.date_num');
 				// Add focus to "today"
 				dateNumCollection[i].classList.add('today');
 				// data-date attr is the only .date el that should also have current time
-				dateCollection[i].setAttribute('data-date', dateToday);
+				dateCollection[i].setAttribute('data-date', d);
 			}
 		} else {
 			// PREV & NEXT MONTH: add class for special styling to dates not of current month

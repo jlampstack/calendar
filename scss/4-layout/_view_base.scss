@@ -2,49 +2,28 @@
 // This file contains all styles related to the date component for month view.
 // -----------------------------------------------------------------------------
 
+/* Container for all dates */
+.calendar_dates {
+	overflow-y: scroll;
+	overflow-x: hidden;
+	display: flex;
+	flex-wrap: wrap;
+	height: 100%;
+	border: 1px solid map-get-deep($palette, 'light', '600');
+}
+
 .date {
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
 	align-items: center;
-	width: calc(100% / 7);
-}
-
-/* Date day view */
-.date-day {
-	display: flex;
-	flex-direction: column;
-	justify-content: flex-start;
-	align-items: flex-start;
-	width: 100%;
-}
-
-/* Date Today */
-.date_dow-today {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	width: 50px;
-	height: 50px;
-	font-size: 14px;
-	color: map-get-deep($palette, 'primary', '500');
 }
 
 .date:not(:last-child) {
 	border-right: 1px solid map-get-deep($palette, 'light', '600');
 }
 
-/* Day of Week */
-
-.date_dow {
-	margin-top: 16px;
-	margin-bottom: -8px;
-	font-size: 12px;
-	font-weight: 400;
-	color: map-get-deep($palette, 'light', '900');
-	width: max-content;
-}
-
+// Date number e.g.) 1 - 31
 .date_num {
 	cursor: pointer;
 	display: flex;
@@ -62,37 +41,26 @@
 	color: map-get-deep($palette, 'dark', '400');
 }
 
-/* Scroller */
-.date_today {
-	margin: 1rem 0.375rem 0.3125rem 0.375rem;
-}
-
-.date_today .date_num {
-	font-size: 20px;
-	padding: 1.375rem;
-}
-
-.date--blur {
-	background: map-get-deep($palette,'light', '100');
-}
-
 .date_num:hover {
 	background: map-get-deep($palette, 'primary', '100');
 }
 
+// Date number for dates not of current month
 .date_num--blur {
 	color: map-get-deep($palette, 'light', '900');
 }
 
-.row {
-	display: flex;
-	width: 100%;
+// Day of Week e.g.) SUN - SAT 
+.date_dow {
+	margin-top: 16px;
+	margin-bottom: -3px;
+	font-size: 12px;
+	font-weight: 400;
+	color: map-get-deep($palette, 'light', '900');
+	width: max-content;
 }
 
-.row:not(:last-child) {
-	border-bottom: 1px solid map-get-deep($palette, 'light', '600');
-}
-
+// Focus for "Today" date
 .today {
 	color: map-get-deep($palette, 'light', '100');
 	background: map-get-deep($palette, 'primary', '500');
