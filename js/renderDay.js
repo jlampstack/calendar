@@ -2,7 +2,7 @@ import { d, daysShort } from './date.js';
 
 import { renderTimeslots, renderTimeLegend } from './renderTimeslots.js';
 
-import { modalPopup } from './modal.js';
+import { modalPopup } from './modalDay.js';
 
 // ==========  GLOBAL ELEMENTS ========== //
 
@@ -15,7 +15,7 @@ const datesContainer = query('.calendar_dates');
 
 // ==========  FUNCTION SCOPE ========== //
 
-// Renders Day View
+// Render Day View
 export function renderDay(direction = null) {
 	// Parent Row Container
 	datesContainer.innerHTML = `<div class="row day">`;
