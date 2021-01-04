@@ -51,10 +51,6 @@ export function renderMonth(direction = null) {
 
 		// SET data-date attribute for each date container
 		dateCollection[i].setAttribute('data-date', date);
-		// PARSE DATA-DATE from string to date formate
-		let parsedDate = new Date(
-			Date.parse(dateCollection[i].getAttribute('data-date')),
-		);
 
 		// CURRENT MONTH: Add date <div>
 		if (date.getMonth() === d.getMonth()) {
@@ -62,17 +58,19 @@ export function renderMonth(direction = null) {
 			dateCollection[
 				i
 			].innerHTML = `<div class="date_num">${date.getDate()}</div>`;
-			// Adjust index -1 to get correct date, d = today
+			// TODAY: date only for today REFACTOR: Same as d, or is it since we're creating a new date to compare?
+			let dateToday = new Date();
+			// Adjust index -1 to get correct date
 			if (
-				parsedDate.getFullYear() === new Date().getFullYear() &&
-				parsedDate.getMonth() === new Date().getMonth() &&
-				parsedDate.getDate() === new Date().getDate()
+				dateToday.getDate() == i - 1 &&
+				dateToday.getMonth() == date.getMonth() &&
+				dateToday.getFullYear() == date.getFullYear()
 			) {
 				const dateNumCollection = queryAll('.date_num');
 				// Add focus to "today"
 				dateNumCollection[i].classList.add('today');
 				// data-date attr is the only .date el that should also have current time
-				dateCollection[i].setAttribute('data-date', d);
+				dateCollection[i].setAttribute('data-date', dateToday);
 			}
 		} else {
 			// PREV & NEXT MONTH: add class for special styling to dates not of current month
