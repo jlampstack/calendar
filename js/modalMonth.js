@@ -30,8 +30,6 @@ export function modalPopup(event) {
 		days[targetDate.getDay()]
 	}, ${months[targetDate.getMonth()]} ${targetDate.getDate()}</span>`;
 
-	console.log(timeblock);
-
 	// DISPLAY DATE in modal as title
 	const modalDate = `${timeblock}`;
 

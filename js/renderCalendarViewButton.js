@@ -37,6 +37,5 @@ export function renderCalendarView(event) {
 			renderMonth();
 			break;
 		default:
-		// console.log('Month');
 	}
 }

@@ -17,6 +17,8 @@ const datesContainer = query('.calendar_dates');
 
 // Renders Week View
 export function renderWeek(direction = null) {
+	// Resets date back to Today, prevents date from changing when month view changes
+	const d = new Date();
 	// Parent Row Container
 	datesContainer.innerHTML = `<div class="row week">`;
 	// GET datesContainer, above

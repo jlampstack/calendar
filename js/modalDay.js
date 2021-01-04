@@ -127,7 +127,7 @@ export function modalPopup(event) {
 
 		query('.modal_date-text').innerHTML = `${modalDate}`;
 
-		// TARGET DATE: Coordinates.
+		// TARGET DATE: Coordinates
 		const targetDateRect = targetElement.getBoundingClientRect();
 		const targetDateTop = Math.floor(targetDateRect.top); /* y */
 		const targetDateLeft = Math.floor(targetDateRect.left); /* x */
