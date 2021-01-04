@@ -5,25 +5,41 @@ const query = document.querySelector.bind(document);
 const queryAll = document.querySelectorAll.bind(document);
 
 export function modalPopup(event) {
-	// Target Element
+	// TARGET ELEMENT: data attribute holds timeslot
 	const targetElement = event.target;
-	// GET Target Date
-	const targetDate = new Date(
-		Date.parse(event.target.getAttribute('data-date')),
+	// Init timeblock e.g) 6:00am
+	// Parse date from string to Date formate to be able to use date methods
+	const parsedDate = new Date(
+		Date.parse(targetElement.getAttribute('data-date')),
 	);
-	const targetDateMonth = months[targetDate.getMonth()];
-	const targetDateYear = targetDate.getFullYear();
-	const targetDateDate = targetDate.getDate();
-	const targetDateDay = days[targetDate.getDay()];
-	const targetDateDayIndex = targetDate.getDay(); /* 5 */
 
-	const modalDate = `${targetDateDay}, ${targetDateMonth} ${targetDateDate}, ${targetDateYear}`;
+	// DATE also with hour of timeslot, 4th param
+	const targetDate = new Date(
+		parsedDate.getFullYear(),
+		parsedDate.getMonth(),
+		parsedDate.getDate(),
+		targetElement.getAttribute('data-timeslot'),
+	);
 
-	// Get the modal
+	// RENDER FORMAT: Currrent Date
+	const timeblockDate = `${days[targetDate.getDay()]}, ${
+		months[targetDate.getMonth()]
+	} ${targetDate.getDate()}`;
+
+	const timeblock = `<span class="timeblock-range">${
+		days[targetDate.getDay()]
+	}, ${months[targetDate.getMonth()]} ${targetDate.getDate()}</span>`;
+
+	console.log(timeblock);
+
+	// DISPLAY DATE in modal as title
+	const modalDate = `${timeblock}`;
+
+	// GET MODAL
 	const modal = query('#modal');
 	const modalContent = query('.modal_content');
 
-	// Get the <span> element that closes the modal
+	// GET <span> element that closes the modal
 	var closeModal = query('#modal .close');
 
 	// PART 2: POSITION MODAL
@@ -37,7 +53,7 @@ export function modalPopup(event) {
 	 * 5. Use .getDay() to find the column index to disp modal in relation to
 	 */
 
-	// GET only the element with class name .date_num
+	// GET only the element with class that holds the data-data
 	if (event.target.classList.contains('date')) {
 		/**
 		 * GET  COORDINATES OF TARGETED DATE SQUARE
@@ -58,25 +74,23 @@ export function modalPopup(event) {
 		const targetDateBottom = Math.floor(targetDateTop + targetDateHeight);
 		const targetDateRight = Math.floor(targetDateLeft + targetDateWidth);
 
-		console.log(targetDateDayIndex, query('.modal_content'));
-
 		modal.style.display = 'block';
 		// IF day index is 0 or 1 (Sun - Mon), modal should display to right
 		if (
-			targetDateDayIndex === 0 ||
-			targetDateDayIndex === 1 ||
-			targetDateDayIndex === 2
+			targetDate.getDay() === 0 ||
+			targetDate.getDay() === 1 ||
+			targetDate.getDay() === 2
 		) {
 			modal.style.display = 'block';
-			modalContent.style.top = `10vh`;
+			modalContent.style.top = `15vh`;
 			modalContent.style.left = `${targetDateRight + 0}px`;
-		} else if (targetDateDayIndex === 3) {
+		} else if (targetDate.getDay() === 3) {
 			modal.style.display = 'block';
-			modalContent.style.top = `10vh`;
+			modalContent.style.top = `15vh`;
 			modalContent.style.left = `${targetDateLeft - 200}px`;
 		} else {
 			modal.style.display = 'block';
-			modalContent.style.top = `10vh`;
+			modalContent.style.top = `15vh`;
 			modalContent.style.left = `${targetDateLeft - 400}px`;
 		}
 	}
@@ -86,7 +100,7 @@ export function modalPopup(event) {
 
 	inputTask.onfocus = e => {
 		inputFocusDiv.style.visibility = 'visible';
-		inputFocusDiv.style.width = '80%';
+		inputFocusDiv.style.width = '100%';
 	};
 
 	inputTask.onblur = e => {
@@ -95,6 +109,9 @@ export function modalPopup(event) {
 			inputFocusDiv.style.width = '0%';
 		}, 200);
 	};
+
+	// ADD FOCUS ON POPUP: So task automatically receives focus without having to click on it
+	inputTask.focus();
 
 	// When the user clicks on <span> (x), close the modal
 	closeModal.onclick = function () {

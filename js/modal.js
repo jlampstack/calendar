@@ -94,7 +94,7 @@ export function modalPopup(event) {
 		// code block
 	}
 
-	// DISPLAY DATE in modal as tital
+	// DISPLAY DATE in modal as title
 	const modalDate = `${timeblock}`;
 
 	// GET MODAL

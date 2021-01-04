@@ -2,7 +2,7 @@ import { d, daysShort, getOffsetStart, getLastDateOfMonth } from './date.js';
 
 import { renderHeading } from './renderHeading.js';
 
-import { modalPopup } from './modal.js';
+import { modalPopup } from './modalMonth.js';
 
 // Query Alias
 const query = document.querySelector.bind(document);
