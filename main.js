@@ -21,9 +21,9 @@ const viewsButton = query('.dropdown_views .btn');
 const viewsDropdownMenu = query('.dropdown_views .menu');
 
 // Init calendar with month view
-renderDay();
+// renderDay();
 // renderWeek();
-// renderMonth();
+renderMonth();
 
 // ==========  FUNCTIONS ========== //
 
