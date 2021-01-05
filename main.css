@@ -1716,6 +1716,22 @@ h1 {
   -webkit-box-shadow: 10px 15px 0px 0px #3c4044;
   box-shadow: 3px -3px 0px 0px #3c4044; }
 
+.btn.today {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 85px;
+  height: 35px;
+  outline: none;
+  border: none;
+  border-radius: 4px;
+  background: #d4d6d1;
+  color: #3c4044; }
+
+.btn.today:hover {
+  background: #d9dbd7; }
+
 .dropdown_views {
   position: relative;
   right: 0.875rem; }
