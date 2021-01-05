@@ -64,6 +64,8 @@ export const daysLetter = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
 
 // Today
 export const d = new Date();
+// Also today but hard coded in case d gets set with setDate
+export const today = new Date();
 
 // ========== Date Functions ========== //
 

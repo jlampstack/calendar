@@ -2,3 +2,22 @@
 // This file contains all styles related to the button component.
 // -----------------------------------------------------------------------------
 
+// ========== TODAY BUTTON ========== //
+
+.btn.today {
+	cursor: pointer;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 85px;
+	height: 35px;
+	outline: none;
+	border: none;
+	border-radius: 4px;
+	background: map-get-deep($palette, 'light', '800');
+	color: map-get-deep($palette, 'dark', '900');
+}
+
+.btn.today:hover {
+	background: map-get-deep($palette, 'light', '700');
+}

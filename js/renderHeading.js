@@ -1,16 +1,19 @@
 import { d, months, monthsShort, daysShort } from './date.js';
 
-import { renderCalendarView } from './renderCalendarViewButton.js';
+import { renderMonth } from './renderMonth.js';
 
 // Query Alias
 const query = document.querySelector.bind(document);
 const queryAll = document.querySelectorAll.bind(document);
 
+// Elements
+
 // Date passed sets date back to today when view changes, solution
 export function renderHeading(date) {
-	const calendarTitle = query('.calendar_title');
-	const viewsButton = query('.dropdown_views .btn');
 	const today = new Date();
+	const calendarTitle = query('.calendar_title');
+	const todayButton = query('.btn.today');
+	const viewsButton = query('.dropdown_views .btn');
 
 	// DAY
 	if (viewsButton.getAttribute('value') == 'day') {
@@ -50,3 +53,7 @@ export function renderHeading(date) {
 		calendarTitle.innerText = `${months[d.getMonth()]} ${d.getFullYear()}`;
 	}
 }
+
+// ==========  TODAY BUTTON ========== //
+
+export function buttonToday() {}

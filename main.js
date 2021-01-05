@@ -1,11 +1,8 @@
-import { d } from './js/date.js';
+import { d, today, months } from './js/date.js';
 
-import { renderDay } from './js/renderDay.js';
 import { renderMonth } from './js/renderMonth.js';
-import { renderWeek } from './js/renderWeek.js';
 
 import { renderCalendarView } from './js/renderCalendarViewButton.js';
-import { renderHeading } from './js/renderHeading.js';
 
 // Query Alias
 const query = document.querySelector.bind(document);
@@ -50,6 +47,16 @@ function nextMonthScroll() {
 }
 
 // ==========  EVENT LISTENERS ========== //
+
+// TODAY: Reset calendar back to today
+query('.btn.today').addEventListener('click', e => {
+	d.setFullYear(today.getFullYear(), today.getMonth(), today.getDate());
+	calendarTitle.setAttribute('data-date', d);
+	viewsButton.innerText = 'Month';
+	renderMonth();
+	calendarTitle.innerText = `${months[d.getMonth()]} ${d.getFullYear()}`;
+	console.log(d);
+});
 
 // Previous Month Arrow
 prevArrow.addEventListener('click', e => {
